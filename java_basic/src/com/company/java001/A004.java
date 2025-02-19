@@ -11,5 +11,5 @@ public class A004 {
 class A41{}
 class A42{}
 class A43{
-	class A44{}
+class A44{}
 }
