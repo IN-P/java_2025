@@ -12,3 +12,5 @@
   1. 자료형(2)
   2. 연산자
   3. git,sourcetree 프로그램 이해중 
+#### 4. 2025-02-20
+  1. git,git,sourcetree pull중 에러발생 몇가지 예시로 이해중
