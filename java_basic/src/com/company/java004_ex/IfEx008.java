@@ -20,8 +20,8 @@ public class IfEx008 {
 		
 		if(avg>=95) {good="장학생";}
 		else if(avg>=80&&avg<95) {lv="우";}
-		else if(avg>=70) {lv="미";}
-		else if(avg>=60) {lv="양";}
+		else if(avg>=70) {lv="미";if(kor<40||eng<40||math<40){pass="불합격";}}
+		else if(avg>=60) {lv="양";if(kor<40||eng<40||math<40){pass="불합격";}}
 		else {lv="가";pass="불합격";}
 		
 		System.out.println("=====================================================================");

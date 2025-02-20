@@ -19,7 +19,7 @@ public class IfEx007_2 {
 		else if(operator=='*') {result=""+(num1*num2);}
 		else if(operator=='/') {result=""+String.format("%.2f",(float)num1/num2);}
 
-		System.out.println(num1+"+"+num2+"="+result);
+		System.out.println(""+num1+operator+num2+"="+result);
 		scan.close();
 	}
 
