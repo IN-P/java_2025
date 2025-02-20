@@ -19,8 +19,11 @@ public class IfEx007 {
 		else if(operator=='*') {result=num1*num2;}
 		else if(operator=='/') {result=num1/num2;}
 		else {System.out.println("잘못 입력하셨습니다. 다시 입력하세요.");}
+		
 		System.out.println(""+num1+operator+num2+"="+result);
 		System.out.printf("%d%s%d=%d",num1,operator,num2,result);
+		//+-*결과물정수 
+		// /소수점 둘째자리
 		
 		scan.close();
 	}

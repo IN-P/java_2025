@@ -2,7 +2,7 @@ package com.company.java004_ex;
 
 import java.util.Scanner;
 
-public class ItEx006 {
+public class IfEx006 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("정수를 입력 > ");
