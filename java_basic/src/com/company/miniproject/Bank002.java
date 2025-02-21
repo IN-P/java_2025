@@ -2,7 +2,7 @@ package com.company.miniproject;
 
 import java.util.Scanner;
 
-public class Project001 {
+public class Bank002 {
 
 	public static void main(String[] args) {
 		System.out.println("WELCOME! (주)CODEJOHNS_BANK");
