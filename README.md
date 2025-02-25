@@ -13,7 +13,7 @@
   3. git,sourcetree 프로그램 이해중
 --- 
 #### 4. 2025-02-20
-  1. git,git,sourcetree pull중 에러발생 몇가지 예시로 이해중
+  1. git,sourcetree pull중 에러발생 몇가지 예시로 이해중
 ---
 #### 5. 2025-02-21
   1. sourcetree 작동방식 이해중
