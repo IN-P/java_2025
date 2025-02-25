@@ -30,4 +30,4 @@
   1. bank project upload > link
   2. bankproject v1.0.1
      1) 회원수를 3명까지 받을 수 있도록 정보를 배열로 다시 설정
-
+  3. for문 반복회수 보다 작은크기의 배열은 넣을 수 없다.
