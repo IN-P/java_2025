@@ -28,4 +28,6 @@
 ---
 #### 2025-02-25
   1. bank project upload > link
+  2. bankproject v1.0.1
+     1) 회원수를 3명까지 받을 수 있도록 정보를 배열로 다시 설정
 
