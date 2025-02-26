@@ -12,7 +12,7 @@ public class Repeat002 {
 		System.out.println();
 		
 		//ver_dowhile
-		i=1; do {System.out.print(100*i+"\t"); i++;} while(i<=3);
+		i=100; do {System.out.print(i+"\t"); i+=100;} while(i<=300);
 	}
 
 }

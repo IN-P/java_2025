@@ -13,5 +13,5 @@ public class Repeat004 {
 			data+=10; System.out.println();
 		}
 	}
-//<button class="btn btn-warning my-3" onclick="alret('박인')">TWO</button>	
+
 }
