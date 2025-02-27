@@ -7,7 +7,7 @@ public class Repeat004 {
 		char ch ='a';
 		for(int y=0;y<arr.length;y++) {
 			for(int x=0;x<arr[0].length;x++) {
-				arr[y][x]=ch; ch++;
+				arr[y][x]=ch++;
 				System.out.print(arr[y][x]+"\t");
 			}
 			System.out.println();

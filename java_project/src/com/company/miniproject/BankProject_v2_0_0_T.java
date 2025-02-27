@@ -2,11 +2,23 @@ package com.company.miniproject;
 
 import java.util.Scanner;
 
-public class BankProject_v_2_0_0 {
+public class BankProject_v2_0_0_T {
 
 	public static void main(String[] args) {
 		System.out.println("WELCOME! (주)CODEJOHNS_BANK");
 		Scanner scan = new Scanner(System.in);
+		
+		String[][] users = {
+				{"","",""},  // 1명의 ID , PW, CASH   00 01 02
+				{"","",""},
+				{"","",""}
+				
+		};
+		
+		// 문자열을 숫자로 변환  : Integer.parseInt( users[0][2]  )
+		// 숫자을  문자열로 변환 : String.valueOf( 1  )
+		
+		
 		String[] id = new String[3];
 		String[] pwd = new String[3];
 		int[] age = new int[3]; 

@@ -3,34 +3,35 @@ package com.company.miniproject;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class BankProject_v_2_0_0_A {
-	//회원정보 전역변수로 설정
-	static Scanner scan = new Scanner(System.in);
-	static int[] age = new int[3]; 
-	static long[] cash = new long[3];
-	static String[] id = new String[3];
-	static String[] pwd = new String[3];
-	
-	public static void manu() {
-		System.out.println("=====BANK=====\n* 1.추가\n* 2.조회\n* 3.입금\n* 4.출금\n* 5.삭제\n* 9.종료");
-		System.out.print("입력>>> ");
-	}
-	
-	public static void a(){}
-	
+public class BankProject_v1_1_0 {
 	public static void main(String[] args) {
-
 		System.out.println("WELCOME! (주)CODEJOHNS_BANK");
-
+		Scanner scan = new Scanner(System.in);
+		//회원정보 3명 배열로 만들어보기
+		int[] age = new int[3]; 
+		long[] cash = new long[3];
+		String[] id = new String[3];
+		String[] pwd = new String[3];
 		while(true) {
 			System.out.println(Arrays.toString(id));
-			manu();
+			System.out.println("=====BANK=====\n* 1.추가\n* 2.조회\n* 3.입금\n* 4.출금\n* 5.삭제\n* 9.종료");
+			System.out.print("입력>>> ");
 			int input=scan.nextInt();
 			
 			switch(input) {
 			case 1:
 				//배열을 처음부터 순차대로 확인; 비어있는 배열을 발견하면 정보 입력후 반복문 종료;   
-
+				for(int i=0,count=0;i<3;i++) {
+					if(id[i]==null) {
+						System.out.print("아이디 입력 : ");id[i]=scan.next();
+						System.out.print("비밀번호 입력 : ");pwd[i]=scan.next();
+						System.out.print("나이 입력 : ");age[i]=scan.nextInt();
+						System.out.print("잔액 입력 : ");cash[i]=scan.nextInt();
+						break;
+					}
+					count++;//차있는 배열마다 카운트 증가 시키고 카운트가 한계에 도닥하면 비어있는 배열이 존재하지 않음
+					if(count==3) System.out.println("더이상 가입할 수 없습니다.");	
+				}
 				
 			break; //END case 1
 			

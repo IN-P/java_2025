@@ -1,0 +1,297 @@
+1. java?
+  1) java?
+    - 프로그래밍 언어 
+    - 사람이 작성한 코드를 컴퓨터가 이해할 수 있는 명령을 작성하는 도구
+    - 정부나 기업의 si (시스템 통합 프로젝트)가 대부분 자바로 구현
+    - jvm(java virtual machine)
+      운영체제와 하드웨어에 관계없이 실행
+    - OOP(object oriented programming)
+
+2. OOP 특징
+  - object oriented programming
+  - 부품객체(class)를 조립해서 만들어가는 프로그래밍 기법
+
+  part1) control ()
+    - 변수 / 자료형 / 제어문 (if/switch/for, while, do while) / array(배열) / method
+  part2) oop 특징 <면접문제>
+    - calss / static, final, modifier / 상속 / abstract, interface / 예외처리
+  part3) oop 활용
+    - collection (ArrayList), Thread, lambda + stream / io / network
+
+
+
+
+3. 설치
+  1) java.sun.com 다운로드 및 설치
+    -   JDK 17.0.14
+    -   jdk-17.0.14_windows-x64_bin.exe
+
+  2) java path
+  JAVA_HOME : 예) C:\Program Files\Java\jdk-17  <<버전은 변경가능
+  path : %JAVA_HOME%\bin
+  PC-시스템 속성-고급-환경변수-시스템 변수//
+  (새로만들기) 변수이름 : JAVA_HOME, 변수 값:  자바경로
+  path-편집(새로만들기):%JAVA_HOME%\bin
+
+  3) java 설치확인
+  cmd // java -version
+
+
+4. 설치 (2) eclipse
+  1) eclipse.org - 다운로드 - java EE
+  2) 작업환경 (workspace) - D:\java_2025
+  * [window]-[perspective] - java
+  * [window]-[preferences]-[검색 : enc]
+
+  * 자바프로젝트 : File-new-java project
+        프로젝트이름 / JRE - javaSE-17
+
+  * 패키지 : 프로젝트 - src - 우클릭 - new - packge
+        com.회사명.프로젝트명.작업단위
+        예) com.company.java001 
+
+  * 자바파일(부품객체)  : 패키지 - 우클릭 - new - class
+    - 클래스명 대문자
+
+
+5. 프로그램 작성 (프로그램 동작)
+  1) 소스파일(개발자) - 컴파일(번역) - 바이트코드(컴퓨터)
+        .java			         .class
+      A001.java   --javac A001.java --   A001.class
+  -------------------------------------------------------------
+
+  연습문제1)
+  패키지명 : com.company.java001_ex
+  클래스명 : A002
+  출력내용 : 본인이름 출력 예) 내이름은 홍길동입니다.
+
+  연습문제2)
+  패키지명 : com.company.java001_ex
+  클래스명 : A003
+  출력내용 : A
+            AB
+  	        ABC
+
+
+
+
+6. git연결
+  1) 폴더만들기 -D:\java_2025
+  2) source tree
+  3) 
+-----------------------------------------------------
+2025/02/18
+
+7. 출력
+  System.out.println("문자열-하고싶은말");
+  System.out.println("A\nAB\nABC\n");
+  System.out.print("문자열-하고싶은말"); //줄바꿈처리x
+  System.out.printf("내나이%d, 내이름%s, 좋아하는 술자 파이 %.2f",10,"ab",1.23 );
+  %d 정수단위  : 10,20,30
+  %s 문자열     : "abc"
+  %f 실수단위  : 1.23, 1.5, 3.14
+
+  1) + 연산
+  2) 숫자+숫자  //더하기연산
+  3) 문자열+숫자, 숫자+문자열 // 그대로 출력
+
+  System.out.println(1+2);
+  System.out.println(1+2+"+"+3+4);
+  System.out.println(""+1+2); 
+
+  연습문제1)
+  패키지명 : com.company.java002_ex
+  클래스명 : PrintEx001
+  출력내용 : %s를 이용해서 다음과 같이 출력
+            좋아하는 색상은 RED입니다.
+
+  연습문제2)
+  패키지명 : com.company.java002_ex
+  클래스명 : PrintEX002
+  출력내용 : 다음의 코드를 10+3=13 나오게 도전!
+            System.out.println(10+3=10+3);
+
+
+
+8. 변수
+  1) 값?
+  - 토큰 : 특정의미를 가진문자
+  - 리터럴, 키워드, 식별자, 연산자, 구분자
+    System.out.printlln("hello");
+
+  2) 값의 보관
+  - 값의 보관 == 메모리확보
+  - 변수 : 변하는 수 (오픈박스)
+  - 상수 : 변하지않는 수 (밀봉된박스)
+  - 변수이름규칙 : $_소문자7
+
+  3) 변수사용법
+    자료형 변수명
+    int     a;  *정수형 a[]
+    double  d;  *실수형 b[]
+    a=10;             a[10]
+    a=20;             a[20]
+    *상수 final int JAVA_HOME; 수정못함
+
+  연습문제1)
+  패키지명 : com.company.java002_ex
+  클래스명 : VarEx001
+  출력내용 : 
+    1-1. apple라는 변수생성
+    1-2. 1-1.에서 만든 변수에 1000이라는 데이터를 대입 (자료형 int)
+    1-3. 1-1.에서 만든 변수를 이용 '사과가격은 1000원입니다' 출력
+    1-4. 1-1.에서 만든 변수에 2000이라는 데이터를 대입
+    1-5. 1-1.에서 만든 변수를 이용 '사과가격은 2000원입니다.' 출력
+
+  연습문제2)
+  패키지명 : com.company.java002_ex
+  클래스명 : VarEx002
+  출력내용 : 
+    1-1. 정수형데이터를 담을 수 있는 변수 a 생성
+    1-2. a에 10 대입
+    1-3. 정수형데이터를 담을 수 있는 변수 b 생성
+    1-4. b에 3 대입
+    1-5. System.out.println을 4번 사용해서
+          10+3=13
+          10-3+7
+          10*3=30
+          10/3=3
+  
+9. 자료형 (1)
+  1) 자료형의 구분
+   - 기본형 : 실제값 저장
+   - 참조형 : 주소값 저장 (String)
+
+  2) 기본자료형
+    논리형 - boolean true/false
+    정수형 - byte(1byte)-short(2byte)-★int(4byte)-long(8byte)    (1-2-4-8)
+      ex) long 1 = 4L;(long 사용법은 따로있음)
+    실수형 - float(4byte)-★double(8byte)                         (4-8)
+      ex) float f = 3.14f; double d = 3.14;
+    ★ 자바기본처리단위
+
+  기본문제1) DateType001
+  기본문제2) DateType002 -scanner.nextInt
+  기본문제3) DateType003 -scanner.nextFloat
+
+
+  연습문제1)
+  패키지명 : com.company.java002_ex
+  클래스명 : DateTypeEx001
+  출력내용 : 
+      1-1. 나이를 입력받을 자료형 선택 후 변수명 age로 하시오.
+      1-2. Scanner이용해서 나이를 입력 받고 출력하시오.
+      당신의 나이를 입력하시오 >_입력
+      내 나이는 **입니다.
+
+  연습문제2)
+  패키지명 : com.company.java002_ex
+  클래스명 : DateTypeEx002
+  출력내용 : 
+      좋아하는 수(정수형) 입력하시오 >_입력
+      좋아하는 숫자는 **입니다.
+
+  연습문제3)
+  패키지명 : com.company.java002_ex
+  클래스명 : DateTypeEx003
+  출력내용 : Scanner이용해서 파이값들 입력받고 출력하시오.
+      파이값을 입력하시오. >_입력받기 3.141592
+      파이값은 **입니다.
+
+  연습문제4)
+  패키지명 : com.company.java002_ex
+  클래스명 : DateTypeEx004
+  출력내용 : Scanner이용해서 성적처리를 입력받고 출력하시오.
+      국어점수를 입력하시오. _입력받기 100
+      영어점수를 입력하시오. _입력받기 100
+      수학점수를 입력하시오. _입력받기 99
+
+      총점 : 299
+      평균 : 99.67
+
+10. 자료형(2)
+  1> 기본형
+    1) 논리형 - boolean : true/false
+    2) 정수형 - byte - short - int - long:1L
+    3) 실수형 - float:f - double
+  2> 형변환
+    1) 데이터 타입을 다른타입으로 변환하는 것
+    2) boolean 빼고 변환가능
+    3) 자동타입변환(작은타입은 큰타입으로 자동변환) 
+        byte by=1; by[1]
+        int in =0; in[ | | | ]
+        in = by;
+    4) 강제타입변환
+        int in =0; in[ | | | ]
+        byte by=1; by[1]
+        by = in; *error
+    -해결방안 by = (byte)in;
+
+  3> char
+    1) 유니코드 - 2byte 
+      char ch1 = '';
+      char ch2 = '\u0000'; -유니코드\u
+
+    2) 저장시 숫자로 출력 문자로
+    3) 문자열에서 문자처리
+
+    연습문제1)
+    패키지명 : com.company.java003_ex
+    클래스명 : CastingEx001
+    출력내용 : Scanner이용해서 입력받고 출력하시오.
+              숫자입력1> _입력 10 (자료형int)
+              숫자입력2> _입력 3 (자료형int)
+              10/3=3.33
+
+    연습문제2)
+    패키지명 : com.company.java003_ex
+    클래스명 : CastingEx002
+    출력내용 : Scanner이용해서 성적처리를 입력받고 출력하시오.
+              1. 국어, 영어, 수학, 총점 자료형을 int
+              2. 레벨 - 평균이 90점대 레벨9, 80점대 레벨8,..
+              국어점수를 입력 100
+              영어점수를 입력 100
+              수학점수를 입력 99
+
+              :::::::::::::::::
+              ::GOOD IT SCORE::
+              :::::::::::::::::
+              국어 영어 수학 총점 평균 레벨
+              100  100  99  299 99.67  9
+    
+*자바자료형 범위 검색해서 공부
+
+10. 연산자
+  1> 연산?
+    1) 데이터를 처리해서 결과값을 산출하는 과정
+  2> 종류
+    먼저 값을구하고 비교 조건처리후 대입
+    먼저         ()
+    값을 구하고   +,-,*,/,%,++,--,<<,>> //시간되면 <<,>> 검색해볼것
+    비교         <,>,<=,>=,==,!=
+    조건처리후    &&,||,?:(삼항연산자)
+    대입         =,+=,-=,*=,/=
+
+  연습문제1)
+  클래스명 : OperatorEx001
+            int a=3,b=10;
+            System.out.println(b+=10-a--);
+            System.out.println(a+=5);
+            System.out.println(a>=10||a<0&&a>3);
+
+  연습문제2)
+  클래스명 : OperatorEx002
+            q1-1 int형 변수 x가 3보다 크고 10보다 작을때 true인 조건식
+            q1-2 char형 변수 ch가 'a'또는 'A'일때 true인 조건식
+            q1-3 char형 변수 ch가 숫자('0'~'9')일때 true인 조건식
+            q1-4 char형 변수 ch가 영문자(대문자 또는 소문자)일때 true인 조건식
+
+[12] 조건문
+  1. 프로그램 코드 실행흐름
+    - 위->아래, 왼쪽->오른쪽
+    - 제어문은 개발자가 원하는 방향으로 변경할 수 있도록 도와줌
+
+  2. 제어문의 종류
+    조건문 : if, switch
+    반복문 : for,while,do while
+    제어키워드 : break, continue
