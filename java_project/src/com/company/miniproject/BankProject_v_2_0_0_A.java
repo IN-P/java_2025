@@ -3,7 +3,7 @@ package com.company.miniproject;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Bank005 {
+public class BankProject_v_2_0_0_A {
 	//회원정보 전역변수로 설정
 	static Scanner scan = new Scanner(System.in);
 	static int[] age = new int[3]; 

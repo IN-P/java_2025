@@ -2,7 +2,7 @@ package com.company.miniproject;
 
 import java.util.Scanner;
 
-public class Bank002 {
+public class BankProject_v_1_0_0 {
 
 	public static void main(String[] args) {
 		System.out.println("WELCOME! (주)CODEJOHNS_BANK");
@@ -23,7 +23,7 @@ public class Bank002 {
 				System.out.print("잔액 입력 : ");cash=scan.nextInt();
 			break;
 			
-			case 2,3,4,5: 
+			case 2: case 3: case 4: case 5: 
 				System.out.print("\n아이디 입력 : ");String tempid=scan.next();
 				System.out.print("비밀번호 입력 : ");String temppwd=scan.next();
 				if(!tempid.equals(id)||!temppwd.equals(pwd)) {System.out.println("다시 확인해주세요.");break;}
@@ -38,8 +38,10 @@ public class Bank002 {
 					System.out.println("==입금완료\n잔액 : "+cash);
 				break;
 				
-				case 4: 
-					System.out.print("출금 : ");cash-=scan.nextInt();
+				case 4:
+					System.out.print("출금 : ");long under=scan.nextInt();
+					if(under>cash) {System.out.println("잔액보다 많은 금액은 출금할수 없습니다.");break;}
+					cash-=under;//출금시 마이너스가 안될수 있게 조건 추가
 					System.out.println("==출금완료\n잔액 : "+cash);
 				break;
 				
