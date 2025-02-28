@@ -35,6 +35,27 @@ public class MethodEx007{
 			if (count==users.length) {System.out.println("유저를 확인해주세요");}
 		}
 	}
+	// 쌤버전
+	public static void who_pass_change(String[][] users) { 
+		Scanner scanner = new Scanner(System.in);
+		String temp_id="",temp_pass="",result="유저를 확인해주세요";
+		
+		System.out.print("아이디를 입력해 주세요 > "); temp_id=scanner.next();
+		System.out.print("비밀번호를 입력해 주세요 > "); temp_pass=scanner.next();
+		
+		int find=-1;
+		for(int ch=0;ch<users.length;ch++) {
+			if(temp_id.equals(users[ch][0])&&temp_pass.equals(users[ch][1])) {find=ch; break;}
+		}
+		if(find!=-1) {
+			System.out.print("변경하실 비밀번호를 입력해주세요 > ");
+			users[find][1]=scanner.next();
+			result = Arrays.toString(users[find]);
+		}
+		
+		System.out.println(result);
+	}
+	
 		
 	public static void main(String[] args) {
 		//변수

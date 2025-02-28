@@ -32,11 +32,24 @@
       <button class="btn btn-warning my-3" onclick="alert('alpha')">TWO</button>
       <button class="btn btn-warning my-3" onclick="alert('dog');alert('cat');">animal1</button>
       <button class="btn btn-warning my-3" id="a">animal2</button>
+      <button class="btn btn-warning my-3" id="b">animal3</button>
+      <button class="btn btn-warning my-3 c">animal4</button>
       <script>
         document.getElementById("a").onclick=function(){
           alert('dog');
           alert('cat');
         }
+
+        document.querySelector("#b").onclick=function(){
+          document.querySelector("#b").style.background="black";
+          document.querySelector("#b").style.color="white";
+        }
+
+        document.querySelector(".c").onclick=function(){
+          document.querySelector(".c").style.background="orange";
+          document.querySelector(".c").style.color="blue";
+        }
+        
       </script>
     </div>
 </body>
