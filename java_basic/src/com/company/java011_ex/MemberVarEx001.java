@@ -1,4 +1,4 @@
-//package com.company.java010_ex;
+//package com.company.java011_ex;
 //
 //class Sawon3{ 
 //	int pay=10000; //인스턴스변수
@@ -21,7 +21,7 @@
 //    } 
 //} 
 //
-//public class StaticEx003{
+//public class MemberVarEx001{
 //  public static void main(String[] args) {
 //   Sawon3   sola = new Sawon3();  
 //   sola.showAll001();
