@@ -65,18 +65,16 @@
 #### 14. 2025-03-07
   1. 예외처리 공부좀더 하기
   2. 문자열을 초기화후 덧셈연산자를 이용하여 문자를 더하면 초기값null까지 같이 들어가므로 문자를 더할경우에는 꼭 문자열을 공백으로 초기화시킨후 사용할것.
-  3. .toUpperCase() : 문자열을 대문자로
-     .toLowerCase() : 문자열을 소문자로
-     Character.toUpperCase(문자) :문자를 대문자로
-
-     
-     Character.toLowerCase(문자) :문자를 소문자로
-     .replace(문자열/문자,문자열/문자) (a,b) a를 b로 교환
-     .lastIndexOf(문자/문자열) 문자열/문자가 마지막으로 등장하는 시작 인덱스번호
-     substring(a,b) : 인덱스번호 a부터 b까지 잘라내기
-     .contains(a문자열) 문자열안에 a문자열이 존재하니? true/false
-     .indexOf(문자열/문자) : 문자열/문자가 처음등장하는 시작 인덱스번호 반환 없다면 -1 반환
-     .indexOf(문자열/문자,인덱스번호) : 인덱스번호부터 찾기 시작
+  3. .toUpperCase() : 문자열을 대문자로<br>
+     .toLowerCase() : 문자열을 소문자로<br>
+     Character.toUpperCase(문자) :문자를 대문자로<br>
+     Character.toLowerCase(문자) :문자를 소문자로<br>
+     .replace(문자열/문자,문자열/문자) (a,b) a를 b로 교환<br>
+     .lastIndexOf(문자/문자열) 문자열/문자가 마지막으로 등장하는 시작 인덱스번호<br>
+     substring(a,b) : 인덱스번호 a부터 b까지 잘라내기<br>
+     .contains(a문자열) 문자열안에 a문자열이 존재하니? true/false<br>
+     .indexOf(문자열/문자) : 문자열/문자가 처음등장하는 시작 인덱스번호 반환 없다면 -1 반환<br>
+     .indexOf(문자열/문자,인덱스번호) : 인덱스번호부터 찾기 시작<br>
 ---
 #### 15. 2025-03-10
     1. iterator 공부하기
