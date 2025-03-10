@@ -68,6 +68,8 @@
   3. .toUpperCase() : 문자열을 대문자로
      .toLowerCase() : 문자열을 소문자로
      Character.toUpperCase(문자) :문자를 대문자로
+
+     
      Character.toLowerCase(문자) :문자를 소문자로
      .replace(문자열/문자,문자열/문자) (a,b) a를 b로 교환
      .lastIndexOf(문자/문자열) 문자열/문자가 마지막으로 등장하는 시작 인덱스번호
@@ -76,3 +78,5 @@
      .indexOf(문자열/문자) : 문자열/문자가 처음등장하는 시작 인덱스번호 반환 없다면 -1 반환
      .indexOf(문자열/문자,인덱스번호) : 인덱스번호부터 찾기 시작
 ---
+#### 15. 2025-03-10
+    1. iterator 공부하기
