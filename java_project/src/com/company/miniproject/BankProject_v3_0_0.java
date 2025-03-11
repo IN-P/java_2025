@@ -33,8 +33,8 @@ class Input implements Bank_Controller{
 			if (user[i]==null) {
 				user[i] = new Bank();
 				System.out.print("아이디를 입력하세요. > "); user[i].setId(sc.next());
-				System.out.print("비밀번호를 입력하세요. > "); user[i].setId(sc.next());
-				System.out.print("잔액을 입금하세요. > "); user[i].setId(sc.next());
+				System.out.print("비밀번호를 입력하세요. > "); user[i].setPass(sc.next());
+				System.out.print("잔액을 입금하세요. > "); user[i].setBalance(sc.nextDouble());
 				break;
 			} else if(i==2) {
 				System.out.println("더이상 가입이 불가합니다.");
@@ -45,46 +45,50 @@ class Input implements Bank_Controller{
 //조회
 class Show implements Bank_Controller{
 	@Override public void exec(Bank[] user, Scanner sc) { 
-		Check c = new Check();
-		if(c.chk(user,sc)==-77) {
-			System.out.println("정보확인"); return;
-		}
-		int index = c.chk(user,sc);
-		System.out.printf("==계좌조회\nID : %s\nPASS : %s\n잔액 : %s\n",
+		Check chk = new Check(); int index = chk.chk(user,sc); if(index<0) { return; } //정보체크
+		System.out.printf("\n== 계좌조회\nID : %s\nPASS : %s\n잔액 : %s\n",
 				user[index].getId(),user[index].getPass(),user[index].getBalance());
 	} 
 } 
 //입금
 class Deposit implements Bank_Controller{
-	@Override public void exec(Bank[] user, Scanner sc) {  } 
+	@Override public void exec(Bank[] user, Scanner sc) {
+		Check chk = new Check(); int index = chk.chk(user,sc); if(index<0) { return; } //정보체크
+	} 
 } 
 //출금
 class Withdraw implements Bank_Controller{
-	@Override public void exec(Bank[] user, Scanner sc) {  } 
+	@Override public void exec(Bank[] user, Scanner sc) {
+		Check chk = new Check(); int index = chk.chk(user,sc); if(index<0) { return; } //정보체크
+	} 
 } 
 //삭제
 class Delete implements Bank_Controller{
-	@Override public void exec(Bank[] user, Scanner sc) {  } 
+	@Override public void exec(Bank[] user, Scanner sc) {
+		Check chk = new Check(); int index = chk.chk(user,sc); if(index<0) { return; } //정보체크
+	} 
 }
 //체크
 class Check {
 	int chk(Bank[] user, Scanner sc) { 
 		System.out.print("\n아이디 입력 : "); String tempid = sc.next();
 		System.out.print("비밀번호 입력 : "); String temppass = sc.next();
+		int chk=-1;
 		for(int i=0;i<3;i++) {
-			if (user[i]==null) {continue;}
-			else if (!user[i].getId().equals(tempid)) {return -1;}
-			else if (!user[i].getPass().equals(temppass)) {return -2;}
-			else {return i;}
-		} // 간소화 가능하지만 일단은 보기편하게 늘려놓음
-		return -3;
+			if (user[i]==null) {continue;} //배열이 비어있으면 건너뛰기
+			else if (user[i].getId().equals(tempid)&&user[i].getPass().equals(temppass)) {chk=i; break;}
+			else if (user[i].getId().equals(tempid)&&!user[i].getPass().equals(temppass)) {chk=-2; break;}
+		} 
+		if(chk==-2) {System.out.println("비밀번호가 틀렸습니다.");}
+		else if(chk==-1) {System.out.println("정보를 확인해주세요.");}
+		return chk;
 	} 
 }
 //메뉴
 class Menu{
 	Bank[] user;
-
-	public Menu() { super(); user = new Bank[3]; } //회원3명만 갖게 배열 크기3 고정
+	
+	public Menu() { super(); user = new Bank[3];  } //회원3명만 갖게 배열 크기3 고정
 	
 	public void exec() {
 		System.out.println("WELCOME! "+Bank.Company); //머릿말
@@ -105,11 +109,11 @@ class Menu{
 	}
 	
 	void show() { //메뉴판
-		System.out.println("== "+Bank.Company+" ========");
+		System.out.println("===== "+Bank.Company+" =====");
 		System.out.println(" 1. 가입\t\t2. 조회");
 		System.out.println(" 3. 입금\t\t4. 출금");
 		System.out.println(" 5. 삭제\t\t9. 종료");
-		System.out.println("------------------------");
+		System.out.println("-----------------------");
 		System.out.print(" 번호 입력 > ");
 	}
 }
