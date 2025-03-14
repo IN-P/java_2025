@@ -69,25 +69,61 @@ class Input implements Bank_Controller{
 //조회
 class Show implements Bank_Controller{
 	@Override public void exec(Set<Bank> user) {
-		
+		for(Bank u : user) {
+			if(u.getId().equals(Menu.chk.getId())) {
+				System.out.printf("\n== 계좌조회\nID : %s\nPASS : %s\n잔액 : %s\n",
+						u.getId(),u.getPass(),u.getBalance());
+			}
+		}
 	} 
 } 
 //입금
 class Deposit implements Bank_Controller{
 	@Override public void exec(Set<Bank> user) {
-
+		Scanner sc = new Scanner(System.in);
+		for(Bank u : user) {
+			if(u.getId().equals(Menu.chk.getId())) {
+				System.out.print("입금 : ");
+				try {
+					Double limit = sc.nextDouble();
+					if (limit<=0) {System.out.println("0 또는 음수는 입금할 수 없습니다."); return;}
+					u.setBalance(u.getBalance()+limit);
+					System.out.println("==입금완료\n잔액 : "+u.getBalance());
+				} catch(Exception e) { System.out.println("숫자만 입력하세요."); sc.next(); return; }
+			}
+		}
 	} 
 } 
 //출금
 class Withdraw implements Bank_Controller{
 	@Override public void exec(Set<Bank> user) {
-
+		Scanner sc = new Scanner(System.in);
+		for(Bank u : user) {
+			if(u.getId().equals(Menu.chk.getId())) {
+				System.out.print("출금 : "); 
+				try {
+					Double limit = sc.nextDouble();
+					if (limit<=0) {System.out.println("0 또는 음수는 출금할 수 없습니다."); return;}
+					if (limit>u.getBalance()) {System.out.println("잔액을 초과한 금액은 출금할수 없습니다."); return;}
+					u.setBalance(u.getBalance()-limit);
+					System.out.println("==출금완료\n잔액 : "+u.getBalance());
+				} catch(Exception e) { System.out.println("숫자만 입력하세요."); sc.next(); return; }
+			}
+		}
 	} 
 } 
 //삭제
 class Delete implements Bank_Controller{
 	@Override public void exec(Set<Bank> user) {
-
+		Scanner sc = new Scanner(System.in);
+		for(Bank u : user) {
+			if(u.getId().equals(Menu.chk.getId())) {
+				System.out.println("계좌를 삭제하시겠습니까? (Y/N)");String select = sc.next();
+				if(select.equals("y")||select.equals("Y")) {Menu.chk=null; user.remove(u);}
+				else if (select.equals("n")||select.equals("N")) {System.out.println("취소하셧습니다.");}
+				else {System.out.println("잘못된 입력으로 메뉴로 돌아갑니다.");}
+			}
+		}
 	} 
 }
 //메뉴
@@ -95,7 +131,7 @@ class Menu{
 	Set<Bank> user;
 	Bank_Controller[] ctrl;
 	Scanner sc;
-	static Bank chk;
+	static Bank chk; //각 controller 에서 정보를 전달하기 위한 추적 뱅크
 	
 	public Menu() { // controller 배열화 및 초기화 Set 초기화
 		super(); 
@@ -132,8 +168,8 @@ class Menu{
 		System.out.print(" 번호 입력 > ");
 	}
 	
-	Bank check (Set<Bank> user) { //체크 메서드
-		Bank temp = new Bank();
+	Bank check (Set<Bank> user) { //체크 메서드 
+		Bank temp = new Bank(); //질문1 여기서 새로만든 temp는 check 메서드에서 사용하고 사라지는가?
 		System.out.print("\n아이디를 입력하세요. > "); temp.setId(sc.next());
 		if (!user.contains(temp)) { //id 중복체크 실패 -1
 			System.out.println("존재하지 않는 아이디 입니다."); return null;
@@ -141,14 +177,13 @@ class Menu{
 			System.out.print("\n비밀번호를 입력하세요. > "); temp.setPass(sc.next());
 			for(Bank u : user) {
 				if(u.getId().equals(temp.getId())&&u.getPass().equals(temp.getPass()))
-				return u; // 아이디와 비번이 일치하면 성공 0
+				return u; // 아이디와 비번이 일치하면 성공 0 성공하면  chk에 주소 보내서 추적
 			}
 		}
-		System.out.println("비밀번호가 틀렸습니다.");
-		return null;
+		System.out.println("비밀번호가 틀렸습니다."); return null;
 	}
 	
-}
+}//END Menu
 //메인
 public class BankProject_v4_0_0 {
 	public static void main(String[] args) {
