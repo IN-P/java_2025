@@ -1,0 +1,330 @@
+-----------------------------------------------------------------------------------------
+part3) oop 활용  .... 챗GPT
+   - collection ( ArrayList ) ,  lambda + Stream ( method 많이 사용) 
+    Thread / network , ,  io
+... java 3번
+-----------------------------------------------------------------------------------------
+
+◆ 1. Collection Framework
+1. 저장단위
+변수 < 배열 < 클래스 < 콜렉션 프레임워크 < 파일 < db
+
+2. 콜렉션 프레임워크
+-  [배열]의 단점을 개선한 클래스 , 객체(클래스)만 저장가능
+-  동적배열
+
+- 배열
+1) 같은타입만 묶어서 저장가능
+2) 배열생성시 크기를 지정해서 사용, 
+   추후 변경이 불가능                   String[]arr = new String[3];
+
+3.  핵심 인터페이스
+1) List    : 순서가 있음O, 중복허용O  기차 
+              add, get, size, remove, contains
+2) Set    : 순서가 없음X, 중복허용X   주머니
+              add, get(X)   향상된 for/Iterator, size, remove, contains
+3) Map  : key, value 쌍                  사전
+              add(x) put
+              , get(key)   향상된 for/Iterator, size, remove, contains
+
+
+
+
+연습문제1)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : ListEx001
+다음과 같이 코드를 작성하시오.
+ 1.  ArrayList이용해서 colors 만들기
+ 2. red, green, blue 데이터 추가
+ 3. 출력
+
+
+
+연습문제2)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : ListEx002
+1.  numbers ArrayList 만들기
+2.  one, two, three 데이터 추가
+3.  사용자에게 1,2,3 입력받기
+4. 1을 입력받으면 one 출력
+    2를입력받으면 two 출력
+    3을입력받으면 three 출력
+
+
+
+
+연습문제3)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : ListEx003
+1. UserInfo    Dto 클래스만들기    - 속성 :  private  String name; private  int age;
+2. users ArrayList 만들기
+3. 다음의 데이터 넣기
+   new UserInfo("아이언맨" , 50) , new UserInfo("헐크" , 40) , new UserInfo("캡틴" , 120)
+4. for+size / 향상된 for 이용해서 데이터 출력
+5. 사용자들의 이름 입력받기 - 이름을 입력받으면 해당하는  유저의 자료출력
+
+> 원하는 유저의 이름을 입력하세요    _예) 아이언맨
+"아이언맨" , 50
+
+
+
+연습문제4)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : ListEx004
+1. Fruits  Dto 클래스만들기    
+    속성 :  private int no;   private  String name; private  int price;
+2. fruits     ArrayList 만들기
+3. 다음의 데이터 넣기
+   new Fruits(1, "apple" , 2000) ,  new Fruits(2, "banana" , 2500) ,  new Fruits(3, "coconut" , 4500)
+4. for+size / 향상된 for 이용해서 데이터 출력
+5. 1,2,3 과일정보를 입력하시오. - 번호을 입력받으면 해당하는  과일정보의 자료출력
+   String [] fruitinfo = {"사과는 빨갛다" , "바나나는 노랗다" , "코코넛은 코코하다"};
+
+> 1,2,3 과일정보를 입력하시오.   _예) 2
+번호: 2,   이름 : banana, 가격:2500
+바나나는 노랗다
+
+
+
+
+
+연습문제1)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : SetEx001
+다음과 같이 코드를 작성하시오.
+ 1.  Hash이용해서 colors 만들기
+ 2. red, green, blue ,green 데이터 추가
+ 3. 출력
+ 4. 갯수출력  
+
+연습문제2)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : SetEx002
+1. UserInfo2    Dto 클래스만들기  - 속성 : private int no; private  String name; private  int age;
+2. users   HashSet만들기
+3. 다음의 데이터 넣기
+   new UserInfo2(1, "아이언맨" , 50) , 
+   new UserInfo2(2, "헐크" , 40) , 
+   new UserInfo2(3, "캡틴" , 120), 
+   new UserInfo2(3, "캡틴" , 120)
+
+4. 향상된 for / Interator 이용해서 데이터 출력
+5. 사용자들의 이름 입력받기 - 이름을 입력받으면 해당하는  유저의 자료출력
+
+ 
+연습문제3)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : SetEx003
+- 중복되는 숫자없이  랜덤으로 숫자6개를 받는 로또를 만들려고 한다.
+1. 알맞은 콜렉션프레임워크는?
+2. 프로그램을 작성하시오.
+ 
+
+연습문제4)  Collection  Framework
+패키지명 : com.company.java015_ex
+클래스명 : SetEx004
+1. HashSet 만들기  
+2. 아래데이터 넣기
+scores.add(new  Score("아이언맨",30,40,50)); 
+scores.add(new  Score("아이언맨",30,40,50)); 
+scores.add(new  Score("아이언맨",30,40,50)); 
+scores.add(new Score("헐크"	,40,60,70)); 
+scores.add(new  Score("캡틴",80,90,100));
+> 갯수는 3개로 나오게 만들기   ( hashCode, equals)
+
+3. Iterator로 출력하기 - 사용자정보,총점, 평균
+
+
+ 
+ 
+
+연습문제1)  Collection  Framework
+패키지명 : com.company.java016_ex
+클래스명 : MapEx001
+
+1. MAP 만들기
+KEY	VALUE
+피구왕	통키
+---------------------
+제빵왕	김탁구
+---------------------
+요리왕	비룡
+
+Map<String, String> map = new HashMap<>();
+
+2 다음과 같이 문제풀기
+==============================
+KING	NAME
+==============================
+피구왕	통키
+---------------------
+제빵왕	김탁구
+---------------------
+요리왕	비룡
+---------------------
+KING의 정보를 제공중입니다
+이름을 입력하세요> 제빵왕
+
+ㅁ제빵왕 : 김탁구
+
+
+
+ 
+연습문제2)  Collection  Framework
+패키지명 : com.company.java016_ex
+클래스명 : MapEx002
+Q1. HashMap만들기
+Q2. 아래데이터 넣기
+map.put(  1,  new UserInfo("아이언맨"    , 50) );  // 1 넣어도 Integer( 클래스, 객체 )
+map.put(  2,  new UserInfo("헐크"       , 40) );  // wrapper 클래스
+map.put(  3,  new UserInfo("캡틴"       , 120) ); // boxing
+map.put(  1,  new UserInfo("아이언맨-new", 50) ); 
+
+Q3. Iterator로 출력하기 - 사용자정보 
+
+
+
+ 
+연습문제3)  Collection  Framework
+패키지명 : com.company.java016_ex
+클래스명 : MapEx003
+1. HashMap만들고 필요한 속성을 추가하시오.
+2. 갯수가 3개가 나오게 하시오
+class Fruit{
+	private int no;
+	private String name;    
+}
+
+public class MapEx003 {
+	public static void main(String[] args) {
+		Map< Fruit, Integer > map = new HashMap<>();
+		
+		map.put( new Fruit(1, "Apple")  , 1);
+		map.put( new Fruit(1, "Apple")  , 1);
+		map.put( new Fruit(2, "Banana") , 2);
+                           
+                             System.out.println("Total : " + map.size());
+             }
+}
+
+
+◆ 2. Lambda + Stream
+1. Lambda ?
+- 자바에서 함수적 프로그래밍 지원기법
+- 코드 간결하게
+
+- 함수형인터페이스
+  : 1개의 추상메서드를 갖는 인터페이스
+
+
+2.  자바 api의 함수형 인터페이스
+1. Consumer   - 받는용도    - accept
+2. Supplier     - 제공용도    - get
+3. Predicate    - 판단용도    - test
+4. Function    - 처리용도    - apply
+5. Operator    - 연산용도    - apply
+
+
+3. Stream
+- 데이터종류에 상관없이( Stream ) 같은방식으로 처리 ( lambda )  
+
+
+
+◆ 3. JAVA IO
+1. JAVA I/O?
+- 입력(input)과 출력(output)
+- 두 대상간의 데이터를 주고 받는 것
+- 스트림이란? 사용연결통로
+	
+입력스트림           →           [프로그램]         →       출력스트림 	
+                 InputStream	             OutputStream
+	    Reader			Writer
+
+2.  JAVA I/O 분류
+- byte단위 / char 단위
+- byte단위(InputStream/OutputStream) - 모든종류( 그림, 멀티미디어, 문자)
+- char단위(Reader       /Writer) - 문자 
+
+3. 보조스트림
+- 스트림이란? 사용연결통로
+- new BufferedReader(  new InputStreamReader(new FileInputStream(file))  )
+- 1) new FileInputStream(file)  [ byte#] /char
+- 2) new InputStreamReader    바이트를 [문자]스트림으로 - 텍스트처리가능
+- 3)  new BufferedReader        속도향상
+
+a쓰고 a읽어오고
+b쓰고 b읽어오고
+c쓰고 c읽어오고
+
+abc 쓰고 abc읽어오고
+
+
+
+◆ 4.   Thread
+1.  프로세스 : 실행 중인 하나의 프로그램
+2.  멀티프로세스 - 동시에 여러 프로세스를 실행
+   
+   크롬 → 실행   프로세스1
+           → 실행   프로세스2
+            → 실행   프로세스3	
+
+3. 구성
+-  자원( Resource ) + Thread( 자원으로 실제작업을 수행 )
+-  모든프로세스는 최소한 하나의 스레드 (main)
+-  같은 프로세스 내의 스레드들은 서로 자원을 공유
+
+4. 동시성과 병렬성
+- 동시에 실행하는 것 같은 효과 ( 동시성과 병렬성)
+- 동시성  : 하나의 코어 멀티스레드가 번갈아가면서 실행
+  1명일꾼 :  1작업 ->2작업 -> 3작업   ( 작업수 > 일꾼수:코어수) 
+- 병렬성  : 멀티코어에서 개별스레드를 동시에 실행  ( 작업수 < 일꾼수:코어수) 
+
+5. 작업스레드 생성방법
+- 1) Thread 상속      2) Runnable 인터페이스 구현 
+
+
+ 
+연습문제1)  Thread
+패키지명 : com.company.java016_ex
+클래스명 : ThreadEx001
+
+1.  QuestionCount  - 10부터 1까지 
+		카운트 1초에 10 ,
+		          2초에 9, 
+		          3초에  8.....
+
+2. 사과알파벳을 입력하세요.
+   사과를 입력을받으면 정답입니다 / 정답이 아닙니다.
+
+
+
+
+
+
+◆ 5.   Network
+1. Network (Net 그물 + work 일하다) 
+- 연결된 통신을 이용해서  컴퓨터의 자원을 공유
+
+2. 서버와 클라이언트
+[Client]   ↔  [Server]
+서비스사용   서비스제공
+웹브라우저    네이버
+
+- 1)  Web    프로그래밍 (Http 통신)   단방향통신 
+     ( Client요청시 Server응답 후종료)
+- 2)  Socket 프로그래밍 (채팅)           양방향통신 
+     ( 특정port를 통해 실시간으로 정보를 주고 받음 - 계속연결되어 있음)
+
+3. Socket
+
+
+
+
+
+
+
+
+
+
+
+

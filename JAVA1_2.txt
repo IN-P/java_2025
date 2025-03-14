@@ -1,0 +1,1929 @@
+-------------------------------------------------------------------------------
+part1) control ★
+   - 변수 / 자료형 / 제어문 ( if/switch/ for, while, do while ) / array / method
+-------------------------------------------------------------------------------
+■1.  java?
+1) java?
+- 프로그래밍 언어  
+- 사람이 작성한 코드를 컴퓨터가 이해할수 있는 명령을 작성하는 도구
+- 정부나 기업의 si (시스템 통합프로젝트) 가 대부분 자바로 구현
+- jvm (java virtual machine)
+  운영체제와 하드웨어에 관계없이 실행
+- OOP
+
+■2. OOP 특징
+- object  oriented programming
+- 부품객체(class)를 조립해서 만들어가는 프로그래밍 기법
+
+
+part1) control ★
+   - 변수 / 자료형 / 제어문 ( if/switch/ for, while, do while ) / array / method
+part2) oop 특징 ★ 면접문제
+   - class / static, final , modifier  /  상속 / abstract,interface / 예외처리
+part3) oop 활용  .... 챗GPT
+   - collection ( ArrayList ) ,  Thread , lambda + Stream ( method 많이 사용) / io / network
+... java 3번
+
+
+
+■3. 설치  (1)   java
+1) java.sun.com 다운로드받아서 설치
+  -    JDK 17.0.14
+  -    jdk-17.0.14_windows-x64_bin.exe
+
+2) java path 설정
+JAVA_HOME :   C:\Program Files\Java\jdk-17
+path            :   %JAVA_HOME%\bin
+
+> [내컴퓨터] - 오른쪽마우스 - 속성 - [고급시스템설정]-[고급] - [환경변수설정]
+> 시스템변수 - [새로만들기] 
+
+3) java 설치확인
+[검색]   cmd   
+----------------------------
+java  -version     
+----------------------------
+ 
+
+
+■4. 설치  (2)   eclipse
+1) eclipse.org  -  다운로드 -  java EE
+2) 작업환경 ( workspace)  -  D:\java_2025
+*  [window] - [perspective] - java
+*  [window] - [preferences] - [검색 : enc]
+
+
+■5.  프로그램 작성 ( 프로그램 동작 )
+1) 소스파일(개발자) -  컴파일(번역)  - 바이트코드(컴퓨터)
+     .java                                            .class
+    
+  A001.java       -- javac  A001.java --     A001.class
+
+
+* 자바프로젝트 : File -new - java project
+       ■프로젝트이름 /  ■JRE - JavaSE-17
+
+*    패키지 : 프로젝트- src - 오른쪽마우스 - new- package
+       com.회사명.프로젝트명.작업단위
+       예) com.company.java001
+
+*       자바파일(부품객체) : 패키지 - 오른쪽마우스 - new- class
+      -  클래스명 대문자
+ctrl +   (화면크게)  / ctrl -  (화면작게)   
+한줄 : ctrl + alt + j
+
+--------------------------------
+package com.company.java001;
+
+public class A001 {
+	public static void main(String [] args) {
+		System.out.println("Hello");
+	} // end main
+} // end class
+
+
+//  한줄 주석(설명글)
+/*  ctrl +   (화면크게)  / ctrl -  (화면작게)
+
+3번째줄 : public class A001{   
+     public   아무데서나 접근가능 / class    부품객체  / A001     클래스이름 
+4번째줄 : jvm 구동시작점 
+     public static void main(String [] args){}
+     public   아무데서나 접근가능 /  static 메모리상사용가능 / void main(String [] arg) 전원버튼이름  
+5번째줄 : System.out.println("Hello");
+     System (운영체제)  out( cmd ) println( 출력)
+     
+  ctrl + f11 ( 실행 )     
+ */
+--------------------------------
+
+연습문제1)  
+패키지명 : com.company.java001_ex
+클래스명 : A002
+출력내용 : 본인이름 출력
+   예)  내이름은 홍길동입니다.
+
+연습문제2)  
+패키지명 : com.company.java001_ex
+클래스명 : A003
+출력내용 : 
+   A
+   AB
+   ABC
+
+
+■6.  git연결
+1)  폴더만들기  - D:\java_2025
+2)  source tree
+
+..... 숙제 .....
+..... 집에 컴퓨터 >> java, eclipse, git, sourcetree  - 설치 ( 이번 주까지  ~25.02.21 )
+ 
+
+
+>> part1) control ★
+   - 변수 / 자료형 / 제어문 ( if/switch/ for, while, do while ) / array / method
+part2) oop 특징 ★ 면접문제
+   - class / static, final , modifier  /  상속 / abstract,interface / 예외처리
+part3) oop 활용
+   - collection ( ArrayList ) ,  Thread , lambda + Stream / io / network
+
+■7. 출력 (1)   println, print, printf
+ 1)  System.out.println("문자열-하고싶은말");  // \n줄바꿈
+ 2)  System.out.print("문자열-하고싶은말");   //줄바꿈처리안됨
+ 3)  System.out.printf("내나이%d ,  내이름%s , 좋아하는 숫자  파이 %f" , 10 , "ab" , 1.23 );
+     %d 숫자정수 : 10,20,30  ( 소수점 안붙음)
+     %s  문자열   :  "abc"
+     %f 숫자실수 :  1.23 , 1.5, 3.14
+     
+   System.out.println("A");   
+   System.out.println("AB");   
+   System.out.println("ABC");   
+
+   System.out.println("A\nAB\nABC");   
+
+■7. 출력 (2)   + 의미 , ()
+System.out.println( 1+ 2 );    //3
+System.out.println( 1+ 2 + "+" + 3 +4);  // 3 + 34    ?
+System.out.println( "" + 1+ 2);  // 12
+
+1)            +    연산(더하기)
+2)     숫자 +   숫자        - 더하기연산
+3)     숫자 +   문자열 ,   문자열 + 숫자   - 출력
+ 
+
+연습문제1)  
+패키지명 : com.company.java002_ex
+클래스명 : PrintEx001
+출력내용 : 
+   %s를 이용해서  다음과 같이 출력
+   
+    좋아하는 색상은 RED입니다.
+
+
+연습문제2)  
+패키지명 : com.company.java002_ex
+클래스명 : PrintEx002
+출력내용 : 
+   다음의 코드를 10+3=13  나오게 도전!
+   System.out.println(  10+3=10+3  );   
+
+~11:00 도전! 시간더 필요하시면 요청주세요!
+
+
+
+■8. 변수
+1. 값?
+- 토큰 : 특정의미를 가진문자
+- 리터럴, 키워드, 식별자, 연산자,구분자
+
+  System.out.println("hello");
+
+2. 값의 보관
+- 값의 보관 == 메모리확보
+- 변수 : 변하는 수 (오픈박스) ,  한개의 값
+- 상수 : 변하지 않는(상) 수  (밀봉박스)
+- 변수이름규칙 :   $_소문자7
+
+3. 변수사용법
+   자료형  변수명   
+
+   int       a;         -       int  정수 1,2,3             a[ ]
+   double b;         - double  실수 1.23              b[ ]
+   
+   a=10;                                                      a[10]
+   a=20;                                                      a[20]
+
+※ 상수    final   int    JAVA_HOME ;   - 수정못해!
+
+
+기본문제1)  Var001
+
+
+연습문제1)  
+패키지명 : com.company.java002_ex
+클래스명 : VarEx001
+출력내용 : 
+   1-1.  apple라는 변수만들기
+   1-2.  1-1.에서 만든 변수에 1000이라는 데이터 대입하시오.  ( 자료형 int )
+   1-3.  1-1.에서 만든 변수이용해서 
+           사과가격은 1000원입니다 출력
+   1-4.  1-1.에서 만든 변수에 2000이라는 데이터 대입하시오.  
+   1-5.  1-1.에서 만든 변수이용해서 
+           사과가격은 2000원입니다 출력
+
+연습문제2)  
+패키지명 : com.company.java002_ex
+클래스명 : VarEx002
+출력내용 : 
+   1-1.  정수형데이터를 담을수 있는 변수 a 만들고   
+   1-2.  a에 10대입하시오
+   1-3.  정수형데이터를 담을수 있는 변수 b 만들고   
+   1-4.  b에 3대입하시오
+   1-5.  System.out.println 을 4번사용해서 
+     10 + 3 = 13
+     10  - 3 = 7
+     10  * 3 = 30
+     10  / 3 = 3
+
+
+
+■9. 자료형 (1)
+1) 자료형의 구분
+ - 기본형 :  실제값 저장
+ - 참조형 :  주소값 저장 ( String )
+
+2) 기본자료형
+ 논리형 - boolean    true/false
+ 정수형 - byte(1byte)- short(2byte) - int(4byte)★ - long(8byte)
+                                                                      long l = 4L;
+ 실수형 - float(4byte) -    double(8byte)★ (4-8)
+             float  f = 3.14f;  double d =3.14;                 
+
+★ 자바기본처리단위
+★ 정수  < 실수     float f = 1L;
+
+기본문제1) DataType001
+기본문제2) DataType002 - scanner.nextInt
+기본문제3) DataType003 - scanner.nextFloat
+
+연습문제1)    ※ DataType002  참고
+패키지명 : com.company.java002_ex
+클래스명 : DataTypeEx001
+출력내용 : 
+   1-1.  나이를 입력받을 자료형 선택후  변수명  age로 하시오.  예) 10,20
+   1-2.  Scanner이용해서 나이 입력받고 출력하시오.
+  
+    당신의 나이를 입력하시오 > _입력받기
+    내 나이는 ** 입니다.
+
+연습문제2)
+패키지명 : com.company.java002_ex
+클래스명 : DataTypeEx002
+출력내용 :  Scanner이용해서 나이 입력받고 출력하시오.
+    좋아하는 수(정수)   입력하시오 > _입력받기
+    좋아하는 숫자는 ** 입니다.
+
+연습문제3)
+패키지명 : com.company.java002_ex
+클래스명 : DataTypeEx003
+출력내용 :  Scanner이용해서 파이값을 입력받고 출력하시오. 
+     파이값을 입력하시오 > _입력받기    3.141592    ( 자료형선택 )
+     파이값은 **입니다.
+  
+연습문제4)
+패키지명 : com.company.java002_ex
+클래스명 : DataTypeEx004
+출력내용 :  Scanner이용해서  성적처리를 입력받고 출력하시오.
+   국어점수를 입력하시오.  _입력받기    100 
+   영어점수를 입력하시오.  _입력받기    100 
+   수학점수를 입력하시오.  _입력받기    99
+
+   총점 :  299
+   평균 :  99.67 
+ 
+
+
+■10. 자료형 (2) 형변환
+1.  기본형
+1)  논리형 - boolean : true/false
+2)  정수형 - byte(1)  - short(2) - int(4) ★ - long(8: 1L)
+3)                                                실수형 - float(4: 3.14f) - double(8) ★
+
+2. 형변환
+1) 데이터 타입을 다른타입으로 변환하는 것
+2) boolean 빼고 변환가능
+3) 자동타입변환(작은타입은 큰타입으로 자동변환) / 강제타입변환
+- (float) , (int)
+4) 자동타입변환
+- byte by=1;      by             [  ]
+  int   in =0;       in[    |   |   |   ]
+  in       = by;
+5) 강제타입
+  int   in =0;       in[    |   |   |   ]
+- byte by=1;      by             [  ]
+  by      = in;     ※ error
+- 해결방안)  by      = (byte)in;
+
+
+3. char
+1) 유니코드 - 2byte
+char  ch1 = ' ';
+char  ch2 = '\u0000';    - 유니코드\u
+
+2)  저장시 숫자로 출력 문자로 
+3)  문자열에서 문자처리
+
+
+
+
+
+
+
+연습문제1)
+패키지명 : com.company.java003_ex
+클래스명 : CastingEx001
+출력내용 :  Scanner이용해서 나누기 프로그램만들기 
+	숫자입력1>  _입력받기  10   ( ☆자료형을 int )
+	숫자입력2>  _입력받기  3     ( ☆자료형을 int )      	     
+	
+	10 / 3 = 3.33
+
+   1단계)  변수 - 입력- 처리 - 출력
+   2단계)  정수/정수 = 정수
+              정수/실수 = 실수
+              실수/정수 = 실수
+              실수/실수 = 실수    
+   	※  형변환법 :    by = (byte) in;   나 잠깐만 byte할게.... 데이터 누수있을수 있음!
+          
+
+  
+연습문제2)
+패키지명 : com.company.java003_ex
+클래스명 : CastingEx002
+출력내용 :  Scanner이용해서  성적처리를 입력받고 출력하시오.
+ 1.  국어, 영어, 수학, 총점☆자료형을 int 
+ 2.  레벨 - 평균이 90점대이면 레벨 9, 80점대면 8, 70점대면 7, 60점대면 6,,,,
+
+국어점수 입력 > 100
+영어점수 입력 > 100
+수학점수 입력 > 99
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: GOOD  IT SCORE ::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+국어	영어	수학	총점	평균	레벨
+100	100	99	299	99.67	9
+
+
+
+
+
+  
+연습문제3)
+클래스명 : CastingEx003
+- 대문자입력받아서 소문자로 변경프로그램을 작성하시오.
+
+연습문제4)
+클래스명 : CastingEx004
+  short sh1 = 1;
+  short sh2 = 2;
+  short result = sh1 +sh2;
+
+
+※ 자바자료형 범위 찾아보기
+
+■11. 연산자
+1.  연산?
+1)  데이터를 처리해서 결과값을 산출하는 과정
+
+2.  종류
+먼저  값을구하고                   비교                         조건처리후        대입
+( )     +,-,*,/,%(나머지)          <, >, <=, >=, == , !=     && ,||, ?:         = ,+=
+
+3. 필수조건
+q1-1 int형 변수 x가 3보다 크고 10보다 작을때 true인 조건식 
+q1-2 char형 변수 ch가 'a' 또는 'A'일때   true인 조건식    
+q1-3 char형 변수 ch가 숫자('0'~'9')일때   true인 조건식     
+q1-4 char형 변수 ch가 영문자(대문자 또는 소문자) 일때   true인 조건식
+
+
+■12. 조건문  (1)
+1. 프로그램 코드 실행흐름
+  - 위 → 아래, 왼쪽 → 오른쪽
+  - 제어문은 개발자가 원하는 방향으로 변경할수 있도록 도와줌.
+
+2. 제어문의 종류
+    조건문      : if , switch  #
+    반복문      : for, while, do while
+    제어키워드 : break# , continue
+
+
+
+
+연습문제1)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx001
+출력내용 : 평균을 입력받아 60점이상이면 합격,  불합격여부를 출력하는 프로그램을 IF로 작성하시오.
+   
+연습문제2)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx002
+출력내용 : 숫자 한개를 입력받아 
+	양수라면 양수  , 음수라면 음수  ,0이라면 zero를 출력하는 프로그램을 작성하시오.
+
+   
+연습문제3)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx003
+출력내용 : 숫자한개를 입력받아 
+	만약 1을 입력했다면   one ,	
+	만약 2을 입력했다면   two ,
+	만약 3을 입력했다면   three ,
+	1,2,3이 아니라면  1,2,3이 아니다를 출력하는 프로그램을 작성하시오.
+ 
+
+   
+연습문제4)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx004
+출력내용 : 문자한개를 입력받아 
+	대문자인지,  소문자인지 판별하는 프로그램을 작성하시오.
+	※  대문자  ch>='A' && ch<='Z' / 소문자  ch>='a'  &&  ch<='z'  
+
+연습문제5)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx005
+출력내용 : 문자한개를 입력받아 
+	대문자인지 이면 소문자로,  소문자이면 대문자로 변경하는 프로그램을 작성하시오.
+	※  a = 'A' + 32    
+   
+
+연습문제6)
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx006
+출력내용 : 숫자를입력을받아
+	홀수면 남자, 짝수면 여자를 출력하는 프로그램을 작성하시오.
+	※  num%2==0  짝수
+
+
+연습문제7)  ※ 숙제
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx007
+출력내용 :  계산기
+
+1. 정수를 하나 입력해주세요 > 10
+2. 정수를 하나 입력해주세요 > 3
+3. 연산자를 입력해주세요(+,-,*,/) > +
+10+3=13
+
+1. 정수를 하나 입력해주세요 > 10
+2. 정수를 하나 입력해주세요 > 3
+3. 연산자를 입력해주세요(+,-,*,/) > -
+10-3=7 
+
+
+연습문제8)  ※ 숙제
+패키지명 : com.company.java004_ex
+클래스명 :  IfEx008
+출력내용 :  성적처리 프로그램입니다.
+
+1. 총점 구하기
+2. 평균 구하기
+3. 평균이 60점이상이고  각과목이 40점 미만이면 아니라면 합격/ 아니면 불합격
+4. 평균이 95점이상이면 장학생
+5. 평균이  90점이상이면 수, 80점이상이면 우, 70점이상이면 미, 60점이상이면 양, 아니라면 가 
+
+학번 입력 > std111
+국어점수 입력 > 100
+수학점수 입력 > 100
+영어점수 입력 > 99
+=================================================================================== 
+학번   국어   영어   수학   총점   평균   합격여부   레벨   장학생
+=================================================================================== 
+std111   100   100   99   299   99.67   합격   수   장학생
+
+
+>>>> sc b
+
+연습문제1)  
+패키지명 : com.company.java004_ex
+클래스명 :  SwitchEx001
+출력내용 :  switch 이용
+     숫자한개 입력받아
+     3이면 봄
+     6이면 여름
+     9이면 가을
+     12이면 겨울
+
+연습문제2)  
+패키지명 : com.company.java004_ex
+클래스명 :  SwitchEx002
+출력내용 :   switch 이용
+     숫자한개 입력받아
+     3,4,5이면 봄
+     6,7,8이면 여름
+     9,10,11이면 가을
+     12,1,2이면 겨울
+
+
+
+■13. 조건문  (2)
+1. 프로그램 코드 실행흐름
+  - 위 → 아래, 왼쪽 → 오른쪽
+  - 제어문은 개발자가 원하는 방향으로 변경할수 있도록 도와줌.
+
+2. 제어문의 종류
+    조건문      : if , switch  
+    반복문      : for# , while # , do while #
+    제어키워드 : break , continue
+
+
+1) for( 초기문; 조건문; 증감문  ){  반복해야할 내용  }    -  반복횟수를 알고 있을때
+2) while( 조건문 ){    반복해야할 내용 }  - 반복횟수 모를때   예)게시판
+   
+   초기문; 
+   while( 조건문  ){  반복해야할 내용        증감문; } 
+
+3) do{  반복해야할 내용  }while( 조건문  ); - 무조건 1번은 실행
+
+   초기문; 
+   do{  반복해야할 내용        증감문; }while( 조건문  ); 
+
+4) 무한반복
+for(;;){
+   // 빠져나올조건
+}
+
+
+5) break/continue
+1. for - break
+// 1 2  - 3뒤로 없어짐! break           
+for(int i=1; i<=10; i++) {
+  if(i==3) {break;}
+  System.out.print(i + "\t");
+}
+
+// for - continue - skip
+// 1 2 (3) 4 5 6 7 8 9 10
+for(int i=1; i<=10; i++) {
+   if(i==3) {continue;}
+   System.out.print(i + "\t");
+}
+		
+
+연습문제1)  
+패키지명 : com.company.java005_ex
+클래스명 :  ForEx001
+출력내용 :   for 이용
+q1  for문을 이용해서 다음과 같이 출력하시오 :   1 2 3 4 5 
+q2  for문을 이용해서 다음과 같이 출력하시오 :   5 4 3 2 1 
+q3  for문을 이용해서 다음과 같이 출력하시오 :   JAVA1   JAVA2  JAVA3  
+q4  for문을 이용해서 다음과 같이 출력하시오 :   HAPPY3   HAPPY2  HAPPY1  
+q5  for문을 이용해서 다음과 같이 출력하시오 :   0,1,2  
+q6  for문을 이용해서 다음과 같이 출력하시오 :   0,1,2, ,,,중간생략 ,,, 99  
+q7  for문을 이용해서 다음과 같이 출력하시오 :   10, 9,,,,중간생략 ,,, , 1 
+q8  for문을 이용해서 다음과 같이 출력하시오 :   0, 2, 4, 6, 8 
+q9  for문을 이용해서 다음과 같이 출력하시오 :   0, 2, 4, 6, 8 ,,,중간생략 ,,, 18 
+
+
+연습문제2)  
+패키지명 : com.company.java005_ex
+클래스명 :  ForEx002
+출력내용 :   for 이용
+
+   사용자에게 단을 입력받아 해당하는 
+   단을 출력해주는 프로그램을 작성하시오. FOR문을 이용하시오.
+
+
+
+연습문제3)  
+패키지명 : com.company.java005_ex
+클래스명 :  ForEx003
+출력내용 :   for 이용
+1~10까지의 합을 구하시오.
+
+upgrade)  시간나면 도전!
+1+2+3+4+5+6+7+8+9+10=55
+
+연습문제4)  
+패키지명 : com.company.java005_ex
+클래스명 :  ForEx004
+출력내용 :   for 이용
+1~10까지 3의 배수 갯수를 출력	
+
+upgrade)  시간나면 도전!
+3의배수 : 3,6,9    
+갯수 : 3개
+
+
+연습문제5)  
+패키지명 : com.company.java005_ex
+클래스명 :  ForEx005
+출력내용 :   for 이용
+소문자 a~z까지 모음의 갯수를 출력하시오. 
+
+
+
+
+연습문제6)  for 무한반복
+패키지명 : com.company.java006_ex
+클래스명 :  ForEx006
+출력내용 :  계산기
+
+1)  각 연산자에 맞게 계산처리
+2)  숫자1, 숫자2는 0~100사이만 입력가능하게 아니면 무한반복
+3)  연산자는 +, - ,*, /만 입력가능하게 아니면 무한반복
+     
+
+1. 정수를 하나 입력해주세요 > 10
+2. 정수를 하나 입력해주세요 > 3
+3. 연산자를 입력해주세요(+,-,*,/) > +
+10+3=13
+
+ 
+연습문제7)  for/while/do while
+패키지명 : com.company.java006_ex
+클래스명 :  RepeatEx007
+1.  for , while , do while문을 이용해서 다음과 같이 출력하시오 :  1 2 3 4 5
+2.  for , while , do while문을 이용해서 다음과 같이 출력하시오 :  5 4 3 2 1
+3.  for , while , do while문을 이용해서 다음과 같이 출력하시오 :  JAVA1   JAVA2  JAVA3
+
+
+연습문제8)  for/while/do while
+패키지명 : com.company.java006_ex
+클래스명 :  RepeatEx008
+for , while , do while 3가지 버젼으로 
+1~10까지 3의 배수의 합 : 18
+
+힌트)
+ver-1)
+1이  3의 배수라면  합을더해주변수에누적
+2가  3의 배수라면  합을더해주변수에누적
+3이  3의 배수라면  합을더해주변수에누적
+
+ver-2)
+if( 1이  3의 배수라면 ){ 합을더해주변수에누적 }
+if( 2가  3의 배수라면 ){ 합을더해주변수에누적 }
+if( 3이  3의 배수라면 ){ 합을더해주변수에누적 }
+
+
+
+upgrade)
+3+6+9 = 18
+
+
+
+
+연습문제8)  for/while/do while
+패키지명 : com.company.java006_ex
+클래스명 :  RepeatEx009
+for , while , do while 3가지 버젼으로 
+ABCDE   
+FGHIJ
+KLMNO
+PQRST
+UVWXY
+Z 
+
+
+
+
+■14. array 배열
+1. 배열?
+- [같은 타입]의 데이터를 [연속된 공간에 저장]하는 자료구조
+- 각 데이터의 저장위치 [인덱스]를 통해서 접근
+
+int  a     = 10;  // 비교
+
+int[]  arr =  {  1,2,3 };
+-----------------------------------------------------
+[heap-동적데이터]              [stack-임시데이터] 
+1번지{ 1,       2,       3}  ←  arr : 1번지
+    arr[0]  arr[1]  arr[2]
+-----------------------------------------------------
+
+
+연습문제1)  array
+패키지명 : com.company.java006_ex
+클래스명 :  ArrayEx001
+    1. 배열명 : arr
+    2. 값 넣기 : 1.1  , 1.2  , 1.3  , 1.4  , 1.5
+    3. for + length 로 출력
+
+연습문제2)  array
+패키지명 : com.company.java006_ex
+클래스명 :  ArrayEx002
+    1. 배열명 : arr
+    2. 값 넣기 : 'A' , 'B' , 'C' , 'D'
+    3. for + length 로 출력
+
+연습문제3)  array
+패키지명 : com.company.java006_ex
+클래스명 :  ArrayEx003
+    1. 배열명 : arr
+    2. 값 넣기 : "아이언맨" , "헐크" , "캡틴"
+    3. for + length 로 출력
+
+
+
+연습문제4)  array
+패키지명 : com.company.java006_ex
+클래스명 :  ArrayEx004
+    1. 배열명 : ch
+    2. 값 넣기 : 'B' , 'a' , 'n' , 'a', 'n' , 'a'
+    3. ch 배열에서 a의 갯수 세기
+
+
+연습문제5)  array
+패키지명 : com.company.java006_ex
+클래스명 :  ArrayEx005
+    1. 배열명 : ch
+    2. 값 넣기 : 'B' , 'a' , 'n' , 'a', 'n' , 'a'
+    3. ch 배열에서 대문자의 갯수카운트, 소문자의 갯수 카운트
+
+
+
+int[] arr2 = new int[3];
+-----------------------------------------------------
+[heap-동적데이터]              [stack-임시데이터] 
+1번지{ 1,       2,       3}  ←  arr : 1번지
+    arr[0]  arr[1]  arr[2]
+-----------------------------------------------------
+
+ 
+
+
+연습문제6)  array
+패키지명 : com.company.java007_ex
+클래스명 :  ArrayEx006
+    new 연산자 이용해서 배열만들기
+    1. 배열명 : arr     
+    2. 값 넣기 : 1.1  , 1.2  , 1.3  , 1.4  , 1.5    for+length 이용해보기
+    3. for + length 로 출력
+
+
+연습문제7)  array
+패키지명 : com.company.java007_ex
+클래스명 :  ArrayEx007
+    new 연산자 이용해서 배열만들기
+    1. 배열명 : arr     
+    2. 값 넣기 : A	B	C	D	E    for+length 이용해보기
+    3. for + length 로 출력
+
+
+
+연습문제8)  array
+패키지명 : com.company.java007_ex
+클래스명 :  ArrayEx008
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+
+    String[] name={"아이언맨","헐크","캡틴","토르","호크아이"};
+    int[] kor={100,20,90,70,35};   
+    int[] eng={100,50,95,80,100};
+    int[] mat={100,30,90,60,100};
+    int[] aver=new int[5];
+
+     1. 평균구하시오.
+     2. 합격,불합격   -  평균이 60점이상이면 합격, 아니면 불합격으로 처리하시오.
+     3. 장학생   - 평균 95점이상이면 장학생으로 처리하시오. 
+	   
+3.출력예시: 	 
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	이름		국어	영어	수학	평균	합격여부	장학생	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+	아이언맨	100	100	100	100		합격	장학생	
+	헐크		20	50	30	33	불합격	----	
+	캡틴		90	95	90	91	합격	----	
+	토르		70	80	60	70	합격	----	
+	호크아이	35	100	100	78		합격	----	
+	:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+	※ 힌트1)	 
+ 	/////// 처리1 : 평균구하기  
+ 	1-1. (국어+영어+수학)/3
+	1-2.  아이언맨의 평균 =  아이언맨의 국의 + 아이언맨의 영어 + 아이언맨의 수학 
+	1-3.  aver[0] = kor[0] + eng[0] + mat[0]
+	
+	1-2.  헐크의 평균 =  아이언맨의 국의 + 아이언맨의 영어 + 아이언맨의 수학 
+	1-3.  aver[1] = kor[1] + eng[1] + mat[1]
+
+	/////// 처리2 : 합격,불합격 
+	2-1. 평균이 60점이상이면 합격	 아니면 불합격
+	2-2. 어디다가 합격, 불합격을 담아놓을 것인가? ※ 필요한것 : 합격,불합격을 담을 배열 	 
+	2-3. 아이언맨의 평균이 60점 이상이라면 합격 / 아니면 불합격
+	2-4. if(aver[0] >=60){   합격 } else{불합격} 
+
+	/////// 처리3 : 장학생
+	3-1. 평균 95점이상 장학생
+	3-2. 어디다가 장학생을 담아놓을 것인가? ※ 필요한것 :  장학생 여부를 저장할 배열 
+	3-3. 아이언맨의 평균이 95점이상이면 장학생 / 아니라면 ----
+	3-4.  if(aver[0] >=95){ 장학생 } else{ ---- } 
+
+
+
+
+연습문제9)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex001
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+  
+   int[][] arr2={{100,200,300},{400,500,600}};
+
+   이중for 이용해서 출력하기
+
+
+
+연습문제10)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex002
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+  
+   int[][] arr2={{101,102,103},{201,202,203}};
+
+   이중for 이용해서 출력하기
+
+
+
+연습문제11)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex003
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+1. new 연산자 이용하여 다차원배열만들기
+2. for + length 이용해서 대입   
+3. for + length 이용해서 출력 
+	101	102	103
+	104 	105 	106
+
+
+연습문제12)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex004
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+1. new 연산자 이용하여 다차원배열만들기
+2. for + length 이용해서 대입   
+3. for + length 이용해서 출력 
+	A	B	C
+	B	C	D
+
+연습문제13)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex005
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+1. 다음의 주어진조건을 이용하여 총점과 평균을 구하시오.
+
+ int[][] arr = {
+	{ 1, 1, 1,},
+	{ 2, 2, 2,},
+	{ 3, 3, 3,},
+	{ 4, 4, 4,},
+ };
+ int total=0;  double avg=0.0;
+
+출력내용:
+총점 : 30
+평균 : 2.5
+
+연습문제14)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex006
+배열을 이용하여 다음의 프로그램을 작성하시오.   
+1. 다음의 주어진조건을 이용하여 총점과 평균을 구하시오.
+
+int[][] datas = {  {  10, 10, 10 ,10}, 
+	         {  20, 20, 20 ,20}, 
+	         {  30, 30, 30 ,30},  
+};  // 3층 4칸 
+int[][] result = new int[datas.length+1][datas[0].length+1];
+
+#1. result 에 datas데이터 복사하기
+#2. 가로방향누적데이터
+#3. 세로방향데이터누적
+#4. 총합
+
+출력내용:
+10	10	10	10	40	
+20	20	20	20	80	
+30	30	30	30	120	
+60	60	60	60	240	
+
+
+연습문제15)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex007
+> 2차원배열 
+1.  new 로 만들고   5*5
+2.  데이터 넣기  for+length
+3.  데이터 출력  for+length
+
+1	2	3	4	5
+6	7	8	9	10
+11	12	13	14	15
+16	17	18	19	20
+21	22	23	24	25
+
+연습문제16)  array
+패키지명 : com.company.java007_ex
+클래스명 :  Array2Ex008
+> 2차원배열   4*4
+1.  new 로 만들고 
+2.  데이터 넣기  for+length
+3.  데이터 출력  for+length
+1	2	3	4
+1	2	3	4
+1	2	3	4
+1	2	3	4
+
+ 
+
+■15. method (1)
+1.   method?
+-  코드 재사용
+-  실행하고자 하는 명령어들을 {} 안에 한꺼번에 모아놓고
+-  메서드이름이 호출되면 실행되는 기능
+-  function, method, 멤버함수
+
+2. method 사용법
+Step1)  함수정의
+Step2)  함수호출
+
+
+연습문제1)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx001
+다음과 같이 dog(), line(), cat() 메서드를 정의하시오.
+
+public static void main(String[] args) {
+  dog();  // 멍멍 출력
+  line();   //========= 출력 
+  cat();    // 야옹 출력
+  line();   //========= 출력
+}
+
+ 
+연습문제2)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx002
+다음과 같이 test1(), test2(), hap(), disp()메서드를 정의하시오.
+
+public static void main(String[] args) {
+	 // public static  리턴값 메서드명(파라미터)
+	 test1(10);    //10 출력
+ 	 test2(1.2);   // 1.2 출력
+ 	 hap(3,5);     // 3+4+5한값  12 출력
+ 	 disp(7, '*');  // *******출력
+}
+
+
+연습문제3)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx003
+
+System.out.println("1. 내가 좋아하는 숫자    :" + return_num());    // 1을 결과값으로 줌
+System.out.println("2. 10/3.0을 실수로 표현 :" + return_float());  // 3.3333을 결과값으로 줌
+System.out.println("3. BEST COLOR        :" + mycolor());      // PURPLE을 결과값으로 줌
+System.out.println("4. 장수돌침대 별이       :" + jangsu());        // ★★★★★을 결과값으로 줌  
+System.out.println("5. 10+20= " + myadd(10,20));       // 두숫자를 더한값을 결과값으로 줌  
+System.out.println("6. 반(노랑조/주황조)=" + myban('B'));  // A이면 노랑조 ,  B이면 주황조
+System.out.println("7. 당신의 학번은?" + stdId(1111));   // G하고 넣어준 학번 나오게
+System.out.println("8.당신의 평균은?" + stdAvg(88));    
+// 90점이상이면 A ,  80점이상이면 B ,  70점이상이면 C , 아니라면  D
+
+출력결과 :
+1. 내가 좋아하는 숫자    : 1
+2. 10/3.0을 실수로 표현 : 3.3333
+3. BEST COLOR        : PURPLE
+4. 장수돌침대 별이       : ★★★★★
+5. 10+20= 30
+6. 반(노랑조/주황조)= 나는 노랑조
+7. 당신의 학번은? G1111
+8. 당신의 평균은? B
+
+
+
+
+연습문제4)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx004
+
+public class MethodEx004{ 
+	public static void main(String[] args) {
+	/////////////////////(1)  변수
+		String name  = ""; 
+		int kor, eng, math, total ;
+		float avg = 0.0f; 
+		String pass = "";
+		String jang = "";
+		String star= "";  
+		Scanner scanner = new Scanner(System.in);
+		
+		/////////////////////(2) 입력 : 이름, 국어, 영어, 수학점수를 입력받으시오.
+	
+		/////////////////////(3) 처리 : 
+		total = process_total(kor , eng, math);    // 1. 총점처리
+		
+		avg = process_avg(total);    //2.  평균처리
+		
+		////////3.  합격  평균이60이상이고, 각각 국어, 영어, 수학40이상/불합격/재시험-각각 40미만인게 있다면  
+		pass = process_pass(avg , kor, eng, math);  
+		
+		//////// 4. 평균이 95점이상이면 장학생
+		jang = process_scholar(  avg  ); 
+		
+		//////// 5. 평균점수대로 별표 붙이기 , 예) 70점대이면 별7개, 80점대이면 별8개, 90점대이면 별9개 , 100점이면 별10개 
+		star = process_star(avg);  
+		
+	   
+		/////////////////////(4) 출력
+		process_show(name, kor, eng, math, total, avg, pass, jang, star);
+	 
+		
+	}// end main
+ 
+	
+}// end class
+
+ 
+		::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+		이름		국어	영어	수학	총점  평균	 합격여부	장학생	랭킹
+		--------------------------------------------------------------------------------------------
+		아이언맨	100	100	100	300    100.0	 합격		장학생	**********
+		--------------------------------------------------------------------------------------------
+
+ 
+
+■16. method (2)
+1. 오버로딩
+- 메서드들을 [같은이름]으로 같게
+- 파라미터 [타입]과 [갯수]로 구분
+- public, static, 리턴값은 오버로딩에 영향을 미치지 않음!
+
+※ 참고사항 - 오버라이딩
+- 상속시 자식클래스에서 맞게 메서드를 수정
+
+
+2.  call by value  vs   call by reference
+- call by value        :  전달받은 값을 복사해서 처리 / 원본값은 변경되지 않음.
+   
+    void show(int a){  System.out.println(a*10);  }
+           show(   1 );    //10
+
+- call by reference  :  전달받은 주소를 직접 참조해서 처리 / 원본값은 변경됨.
+
+    int [] a = {1,2,3};
+    void show(int [] a){   a[0]*=10;  }
+               show(   a );    
+
+    System.out.println(  a[0]   );  //10
+
+
+연습문제6)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx006
+
+public class MethodEx006{ 
+    char[] ch = {'a','b','c'};
+    upper(ch);     
+    System.out.println("main. 배열값 : "      +  Arrays.toString(ch)          );  // [A,B,C]
+}
+
+
+연습문제7)  method
+패키지명 : com.company.java008_ex
+클래스명 :  MethodEx007
+
+public class MethodEx007{ 
+	// 변수
+	String [][] users = {{ "aaa"  , "111"   , "한국"     } ,     // 00 01 02
+						    { "bbb" , "222"   , "호주"       } ,       // 10 11 12
+						    { "ccc"  , "333"   , "중국"      }};      // 20 21 22
+	// 입력
+	who_are_you(users);    
+	//  public static void who_are_you(String [][] users){  아이디를입력받아서 나라조회 }
+	who_pass_change(users); 
+	//  public static void who_pass_change(String [][] users){ 아이디,비밀번호가 맞으면 비밀번호 바꾸기}
+}
+
+출력내용) who_are_you(users);    
+//  public static void who_are_you(String [][] users){  아이디를입력받아서 나라조회 }
+아이디를 입력해주세요>aaa
+aaa는 한국사람입니다.
+
+
+출력내용)
+who_pass_change(users); 
+//  public static void who_pass_change(String [][] users){ 아이디,비밀번호가 맞으면 비밀번호 바꾸기}
+
+아이디를 입력해 주세요 > bbb
+비밀번호를 입력해 주세요 > 123
+유저를 확인해주세요!
+
+아이디를 입력해 주세요 > bbb
+비밀번호를 입력해 주세요 > 222
+변경하실 비밀번호를 입력해주세요123
+정보확인 : [bbb, 123, 호주]
+
+
+-------------------------------------------------------------------------------
+part2) oop 특징 ★ 면접문제
+   - class / static, final , modifier  /  상속 / abstract,interface / 예외처리
+-------------------------------------------------------------------------------
+
+● 1. CLASS?
+1. 자바 저장단위
+- 변수  < 배열 < 클래스
+
+2. 클래스 (CLASS)
+- 객체의 특징  예) 자동차
+- 부품객체
+- 상태(멤버변수) 와                 행위(멤버함수)를 갖는다 
+   예) 바퀴클래스, 엔진클래스 + 드라이브, 후진,파킹
+
+3. OOP?  ★
+-     객체             지향     프로그래밍
+- Object         Oriented Programming
+-     틀                 기반      프로그램
+- 부품객체(클래스)  조립    완성된 프로그램을 만드는 기법  ★
+
+4. 클래스와 인스턴스
+-1. 클래스(설계도)틀로 예) 붕어빵틀
+-2.	     인스턴스화를 통해( new 실제 메모리-heap에 객체만들기)
+-3. 		       여러개의 객체(인스턴스)를 만들기	
+			  예) 객체(Object) - 붕어빵들
+			       인스턴스      - 팥붕어빵, 슈크림뿡어빵 각각,,,
+			
+> 클래스는 설계도
+> 인스턴스는  실제로만들어진객체
+
+
+
+
+연습문제1)  class
+패키지명 : com.company.java009_ex
+클래스명 :  ClassEx001
+class Student001{
+  멤버변수 : String name;  int no, kor, eng, math;
+  멤버함수 : void info()
+}
+
+public class ClassEx001{
+   public static void main(String[] args) {
+      Student001   s1 = new Student003();
+     s1.name="first";  s1.no=11; s1.kor=100; s1.eng=100; s1.math=99;
+     s1.info();
+   }
+}
+출력내용 : 
+  이름: first
+  총점 : 299
+  평균 : 99.67
+
+
+● 2. 생성자
+1. 생성자
+ - new 연산자에 의해 호출 [ 초기화 ] 담당
+
+2. 기본생성자( 디폴트생성자 )
+- 모든클래스에 생성자가 반드시 존재
+- 생성자선언을 생략시 컴파일러가 자동으로 기본생성자를 추가
+- 개발자가 선언시 컴파일러가 자동생성 취소
+
+3. 생성자형식
+class A{
+   public    A(                 ){}   //기본생성자(디폴트생성자)
+   public    A(String name){}   //파라미터, 알규먼트가 있는 생성자.
+}
+1)  리턴값 없음          -   리턴값 메서드명(파라미터)
+2)  클래스명과 동일
+3)  디폴트생성자를 생성해야하는 경우 : 오버로딩 , 상속
+
+
+4.  초기화순서
+	기본값			명시적초기화		초기화블록		생성자
+	
+	4-1) 기본값      : String ,객체 - null /  int - 0 으로 초기화
+	4-2) 명시적초기화 :  int a=10;    중요콘텐츠 명시적으로 알림!    
+    4-3) 초기화블록   :  { a=10; b=20; }   여러개초기화시
+    4-4) 생성자      : 최종은 생성자에서 사용함.  인스턴스변수 초기화
+
+
+
+연습문제1)  class
+패키지명 : com.company.java010_ex
+클래스명 :  ClassEx003
+-- 생성자 작성하시오.
+class Coffee{
+  멤버변수 : String name;  int  price, num;
+  멤버함수 : void show(){}   //커피정보출력
+}
+public class Class003 {
+   public static void main(String[] args) {
+	Coffee a1 = new Coffee("까페라떼" ,2 , 4000);  a1.show();
+	Coffeea2 = new Coffee();                            a2.show();
+  }
+}
+출력내용 :
+=====커피
+커피명 : 까페라떼
+커피잔수 : 2 
+커피가격 : 8000
+=====커피
+커피명 : 아메리카노
+커피잔수 : 1
+커피가격 : 2000
+
+
+
+
+연습문제2)  class
+패키지명 : com.company.java010_ex
+클래스명 :  ClassEx004
+-- 생성자 작성하시오.
+class TV{
+//상태-멤버변수  : 채널/볼륨 String channel; int volume;	
+//행위-멤버함수  : 채널, 볼륨 입력: input() / 출력 : show()
+}
+public class ClassEx004 {
+    public static void main(String[] args) {
+	TV  t1 = new TV("JDBC" , 8);
+	t1.show(); 
+	TV  t2 = new TV();
+	t2.input();  
+	t2.show();
+   }
+}
+출력내용 :
+JDBC	8
+
+* channel입력>youtube
+* volume 입력>10
+youtube	10
+ 
+
+
+
+연습문제3)  class
+패키지명 : com.company.java010_ex
+클래스명 :  ClassEx005
+-- 생성자 작성하시오.
+class Card{
+	//상태-멤버변수  : 채널/볼륨 int cardNum; boolean  isMembership;	
+	//행위-멤버함수  : 채널, 볼륨 입력: input() / 출력 : show()
+}
+public class ClassEx005{
+   public static void main(String[] args) {
+	Card  c1= new Card(); 
+	System.out.println(c1);  
+   }
+}
+
+출력내용 :
+Card[cardNum=0, isMembership=false]
+
+ 
+
+
+연습문제4)  class
+패키지명 : com.company.java010_ex
+클래스명 :  ClassEx006
+-- 생성자 작성하시오.
+class Score{
+	//상태-멤버변수  :  String stdid; int kor,eng,math,total,avg;	
+	//행위-멤버함수  :  void total() 총점구해주기
+	//	            void avg()  평균구하기
+	//                      void info()   학생정보출력  ※힌트2)  info(){    total();  avg();     }  다른메서드에서 메서드 사용가능  
+	//※ 힌트1) 생성자 :   Score() / Score(stdid, kor, eng, math)
+}
+public class ClassEx006{
+   public static void main(String[] args) {
+	Score  s1= new Score("std1234" , 100, 100 , 99 ); 
+	s1.info();
+   }
+}
+
+출력내용 :
+학번	kor	eng	math	total	avg
+std1234   100	100	99	299	99.67
+
+ 
+
+연습문제4)  class
+패키지명 : com.company.java010_ex
+클래스명 :  ClassEx007
+-- 생성자 작성하시오.
+class Calc{
+	//상태-멤버변수  :  int num1, num2;  char op;  double result;
+	//행위-멤버함수  :  void input()   입력받기
+	//	            void opcalc() +더하기계산, -라면 -계산  , *라면 *계산 , /라면 /계산 
+	//                      void show()    연산출력   
+}
+public class ClassEx007{
+   public static void main(String[] args) {
+	Calc  c1= new Calc(10,3,'+');  
+	c1.show();
+	
+	Calc  c2= new Calc();  
+	c2.input();   
+	c2.show(); 
+	 
+   }
+}
+
+출력내용)
+10+3=3
+
+숫자1> 10
+숫자2> 3
+연산자> /
+10/3=3.33
+
+
+● 3. static / final 
+1. runtime data area
+method : 정보저장 , static, final
+heap   : 동적저장 - new ,  gc( garbage collecetor)가 처리소멸
+stack  : 임시값저장
+
+2. static
+- jvm 소스로딩시 메모리 할당받음
+- new연산자보다 먼저 실행되어 메모리(method 영역:runtime)에 1회 생성
+- 클래스명.변수명  / 클래스명.메서드명   - 클래스변수/클래스메서드 
+  Calc.name
+- 객체생성과 관련이 없음.
+- 인스턴스로 접근시 권장사항이 아니므로 경고발생
+
+3. final
+- 수정하지마
+- 클래스 ( 상속받지마 - extends 사용못함)
+- 멤버변수 ( 상수 )
+- 멤버함수 ( 부모메서드사용못함 - @Override 못함)
+
+
+
+연습문제1)  static
+패키지명 : com.company.java010_ex
+클래스명 :  StaticEx001
+-- class Area1 작성해주세요   ※ pi값은 3.14159
+public class StaticEx001{
+  public static void main(String[] args) {  
+	System.out.println("원의 면적    : " + 10 * 10 * Area1.pi);
+	System.out.println("사각형의 면적 : " + Area1.rect(10, 5));
+	System.out.println("삼각형의 면적 : " + Area1.triangle(10, 5));
+  }
+}
+
+출력내용 : 
+원의 면적    : 314.159
+사각형의 면적 : 50.0
+삼각형의 면적 : 25.0
+
+
+
+
+
+연습문제2)  static
+패키지명 : com.company.java010_ex
+클래스명 :  StaticEx002
+-- class Mobile2   작성해주세요    
+
+
+class Mobile2{  
+      String   serialNo;
+      static  int count=0; 
+} 
+
+public class StaticEx002{
+  public static void main(String[] args) {
+  	Mobile2 m1 = new Mobile2(); //1. new 공간빌리기  2. 생성자()  3. 번지
+	Mobile2 m2 = new Mobile2(); 
+	Mobile2 m3 = new Mobile2();  
+	Mobile2 m4 = new Mobile2();  
+
+	System.out.println("모바일 갯수는 모두 "+ Mobile2.count +"개 입니다.");   
+	System.out.println("m1의 제품번호 " + m1.serialNo);  //1
+	System.out.println("m2의 제품번호 " + m2.serialNo);  //2
+	System.out.println("m3의 제품번호 " + m3.serialNo);  //3
+	System.out.println("m4의 제품번호 " + m4.serialNo);  //4
+  }
+}
+
+출력된결과:
+모바일 갯수는 모두 4개 입니다.
+m1의 제품번호 2030-1
+m2의 제품번호 2030-2
+m3의 제품번호 2030-3
+m4의 제품번호 2030-4
+
+
+ 
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
+연습문제1)  멤버변수
+패키지명 : com.company.java011_ex
+클래스명 :  MemberVarEx001
+-- class Sawon3작성해주세요 
+1. 인스턴스변수, 클래스변수, 지역변수 를 구분하시오.
+2. 인스턴스메서드, 클래스메서드 구분하시오.
+3. 오류나는 이유는?
+class Sawon3{ 
+	 int pay      =10000;    
+	 static int su=10;     
+	 static int basicpay=pay;    
+	 static int basicpay2;    
+	 
+	 public static void showSu() {   System.out.println(su);  }          
+	 public static void showPay() {   System.out.println(this.pay);  }    
+  
+	 public  void  showAll001() {   
+		 System.out.println(su);  
+		 System.out.println(this.pay);  
+	 } 
+	 public static  void  showAll002() {   
+		  showAll001();    
+		 System.out.println(this.pay);
+	 } 
+} 
+public class MemberVarEx001{
+  public static void main(String[] args) {
+	Sawon3   sola = new Sawon3();  
+	sola.showAll001();
+  }
+}
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+연습문제1)  final
+패키지명 : com.company.java011_ex
+클래스명 : FinalEx
+다음코드에서 오류나는 부분을 찾아 주석달고 이유를 적으시오.
+class User002 {
+	final String nation = "Korea";   
+	final String jumin;   
+	String name;
+
+	public User002() { jumin="00000"; }
+	public User002(String jumin, String name) {
+		this.jumin = jumin;
+		this.name = name;
+	}
+}
+ public class FinalEx {
+	public static void main(String[] args) {
+		User002 user1 = new User002("123456-1234567", "아이유");
+		System.out.println(user1);   
+		
+		user1.nation = "USA";      
+		user1.jumin  = "123123-1234321"; 
+		user1.name = "IU"; 
+		System.out.println(user1);   
+	}
+}
+
+
+
+● 4. 지정접근자
+- 클래스 및 구성요소에 대한 접근제한 역할
+		클래스내부            패키지(폴더)	하위클래스	그외
+public		O		O		O		O
+protected		O		O		O (extends)	X 
+default(package)     O                         O		X		X
+private		O		X		X		X
+
+---------------------
+class A{
+   private int a;     int b;   protected int c;   public int d;
+   A(){}
+   A(int a){  this.a=a;}   //생성자
+   void  setA(  int a ){ this.a = a;}  //셋팅해주는 메서드 
+   int    getA(){     return this.a; }  //값찾아주는메서드
+}
+---------------------
+
+
+
+연습문제1)  지정접근자
+패키지명 : com.company.java011_ex
+클래스명 : ModifierEx1
+다음과 같이 코드를 작성하시오.
+ㅁ출력된화면
+	Milk [mno=0, mname=null, mprice=0]
+	Milk [mno=0, mname=null, mprice=2000]
+	
+ㅁ주어진조건
+public class Milk{  // java011_ex에 설정해주세요!
+	private int  mno;   
+	private String mname;  
+	private  int mprice;  
+}
+public class ModifierEx1{ // java011 패키지에 설정해주세요.
+	public static void main(String[] args) {
+		Milk m1 = new Milk();  
+		System.out.println( m1 );  
+		m1.setMprice(2000);       
+		System.out.println( m1 );
+	} // end main
+} // end class
+
+
+
+
+
+연습문제2)  지정접근자
+패키지명 : com.company.java011_ex
+클래스명 : ModifierEx2
+다음과 같이 코드를 작성하시오.
+
+ㅁ출력된화면
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+이름	국어	영어	수학	총점	평균	합격여부	장학생	랭킹
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+iron	100	100	100	300	100.00	합격	장학생	**********
+hulk	20	50	30	100	33.33	불합격		***
+
+
+
+
+
+ㅁ주어진조건
+public class Score{
+	private String name;
+	private int kor, eng, math , total;
+	private double aver;
+	private String p  , s  , rank;
+} // java011_ex에 설정해주세요!
+
+public class ModifierEx2{    // java011 패키지에 설정해주세요.
+	public static void main(String[] args) {
+		Score iron = new Score();     
+		Score hulk = new Score("hulk" , 20,50,30);    
+		
+		// Score.info()위에 메서드작성해주세요!  ##
+		// setter를 이용해주세요!
+		iron.setName("iron"); iron.setKor(100); iron.setEng(100); iron.setMath(100);
+		
+		Score.info();	  // 클래스메서드
+		iron.show();			 
+		hulk.show();	
+	}
+
+}
+
+Score.info() 사용시화면
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+이름	국어	영어	수학	총점	평균	합격여부	장학생	랭킹
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
+
+
+● 5. 클래스배열
+
+  클래스[]  배열명 = new 클래스[갯수];
+  
+  String[]   arr     = new String[3];  
+  A1     []   carr   = new A1[3];  // [null, null, null ]
+  ※ null  - 공간은 있지만 값이 비어있어!
+   
+  carr[0]  = new  A1();  ※ 생성자를 불러서 인스턴스변수를 초기화해 사용가능하게만들기
+  1번지{  name="" }  ←  carr[0] 1번지
+
+
+
+
+연습문제1)  클래스배열
+패키지명 : com.company.java011_ex
+클래스명 : ClassArrEx1
+다음과 같이 코드를 작성하시오.
+ㅁ출력된 화면
+Apple [name=RED, order=iron, num=2, price=1000]
+Apple [name=GREEN, order=hulk, num=1, price=1500]
+Apple [name=GOLD, order=captain, num=3, price=2000]
+
+ㅁ주어진 옵션
+public class Apple{   //// 실행 main과 파일을 분리해주세요!
+   private String name;
+   private String order;
+   private int num;
+   private int price;
+}
+
+public class ClassArrEx1{
+  public static void main(String[] args) {
+        Apple[] apples= new Apple[3]; 
+        //위의 화면처럼 값 셋팅
+        //위의 화면처럼 출력
+  }
+}
+
+
+
+
+
+연습문제2)  클래스배열
+패키지명 : com.company.java011_ex
+클래스명 : ClassArrEx2
+다음과 같이 코드를 작성하시오.
+ㅁ출력된 화면
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+이름	국어	영어	수학	평균	합격여부
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+아이언맨	100	100	100	100.0	합격
+헐크	90	60	80	76.0	합격
+블랙팬서	20	60	90	56.0	불합격
+
+ㅁ주어진 옵션
+public class  Score2{   //// 실행 main과 파일을 분리해주세요!
+	private String name;   // 셋팅 setName() ,가져오기 getName()
+	private int kor, eng, math;  // setKor , getKor /  setEng , getEng / setMath , getMath
+	private double avg;
+	private String pass;
+}
+public class ClassArrEx2 {
+  public static void main(String[] args) {
+	////// MODEL
+	Score2[] std = new Score[3];  
+	// 0번째에는 아이언맨 정보넣기  - "아이언맨", 100, 100, 100
+	// 1번째에는 아이언맨 정보넣기  - "헐크", 90, 60, 80
+	// 2번째에는 아이언맨 정보넣기  - "블랙팬서", 20, 60, 90
+		
+	////// CONTROLLER - 처리 해결사 Controller)
+	Score2Process process = new Score2Process();
+	process.process_avg(std); 
+	process.process_pass(std); 
+	process.process_pass(std);  
+	
+	////// VIEW       - CONSOLE , WEB
+	Score2Print  print = new Score2Print();
+	print.show(std);  
+  }
+}
+ 
+ 
+
+
+
+
+
+
+
+
+● 6. 상속
+1. 상속?  클래스의 재사용 - 새로운 부분만 추가, 수정해서 사용
+
+2. super  vs  sub
+  부모           자식
+  상위           하위
+  parent        child
+  super         sub
+
+3. 모든클래스는 Object 클래스를 상속
+
+4. UML - 부모 ← 자식
+
+5. 장점 - 빠른개발, 코드의 중복성제거, 다형성(하나의 타입으로 여러타입을 관리)
+
+6. 문법
+  class  자식클래스 extends 부모클래스  (O)  단일상속
+  
+  class  자식클래스 extends 부모클래스1, 부모클래스2 (X)
+
+7. 상속시 부모속성을 사용할수 있는 이유?
+   - 부모생성자를 호출해 
+     부모의 인스턴스변수를 초기화해 사용가능하게 만들어줌.
+
+8. 오버라이드
+  - @Override
+  - 상속(extends)시  부모의 메서드와 동일한지
+
+
+
+
+
+
+● 6. 클래스 다이어그램
+1. 시스템을 구성하는  클래스들 사이관계를 표현
+2. 클래스  - 객체를 생성하는 설계도
+
+3. https://staruml.io/  - 다운로드 - 설치
+
+4. 사용법
+ - 클래스 
+   --------------------   
+   [   Animal    ]
+   --------------------  
+   Add - Attribute   ( 멤버변수 )
+   --------------------  
+   Add - Operation  ( 멤버함수)
+   --------------------  
+
+
+5. UML 관계 
+ 1) 연관관계
+ 2) 일반화관계
+ 3) 집합관계
+ 4) 의존관계
+ 5) 실체화관계 ( 인터페이스)
+
+.....................................................................................
+  1) 연관관계
+>2) 일반화관계  ( 상속, IS-A(고양이는 동물이다) , 속이빈 화살표 )
+  2-1) 상속관계
+  2-2) IS-A 관계 - 한 클래스가 다른클래스를 포함하는 상위 개념
+    -  고양이는 동물이다 (O)  is - A 관계
+    -  사람도 동물이다    (O)  
+    -  동물은 고양이 이다(X)
+
+ 3) 집합관계
+ 4) 의존관계
+ 5) 실체화관계 ( 인터페이스)
+.....................................................................................
+
+
+
+
+
+
+
+● 7. 다형성
+1. 다형성 
+   - 많은 형상을 띄는 성품
+   - 여러타입의 객체를 하나의 타입으로 관리
+
+2. 부모는 자식을 담을 수 있다.   ( 업캐스팅 )
+-----------------------------
+<<class>> Animal    [ 이름, 나이  / 먹기, 자기 , 배변 ]
+                 ↑
+<<class>> Cat         [ 동물등록증 / 꾹꾹이 하기]
+-----------------------------
+
+Animal ani   =   new Cat();   //부모 = 자식
+
+2-1) Animal ani                       {  이름, 나이  / 먹기, 자기 , 배변 }  
+2-2)  Cat() → Animal()   → Object() 
+      {동물등록증 / 꾹꾹이 하기}+ {  이름, 나이  / 먹기, 자기 , 배변 }
+
+
+
+3. 자식은 부모를 담을 수 있다.   ( 다운캐스팅 )
+-----------------------------
+<<class>> Animal    [ 이름, 나이  / 먹기, 자기 , 배변 ]
+                 ↑
+<<class>> Cat         [ 동물등록증 / 꾹꾹이 하기]
+-----------------------------
+
+Cat cat   = new Animal();     // 자식 = 부모 ( 다운캐스팅)  동물은 고양이다 X
+
+1. Cat  cat;
+{이름, 나이  / 먹기, 자기 , 배변} + { 동물등록증 / 꾹꾹이 하기}
+
+2. new Animal();
+{이름, 나이  / 먹기, 자기 , 배변}
+
+3. 만족못시키는 범위가 생김
+{ 동물등록증 / 꾹꾹이 하기}
+
+
+
+4. 쓰느이유?
+ 부모타입으로 자식객체들 관리가능
+     Animal
+   ↑      ↑
+Cat     Person
+
+Animal[] animals = {    new Cat() ,  new Cat() ,  new Person() ,  new Person() ,  }; 
+
+
+연습문제1)  다형성
+패키지명 : com.company.java012_ex
+클래스명 : PolyEx001 
+다음과 같이 코드를 작성하시오.
+// Q1. 상속도 그리기
+// Q2. 각클래스에서 사용할수있는 멤버변수/멤버메서드
+class Papa extends Object{  
+	int money = 10000;     
+	public Papa() { super(); }
+	public void sing() {  System.out.println("GOD-거짓말");  }
+}// end class
+class Son extends Papa{ 
+	int money = 1500;
+	public Son() { super(); }
+	@Override public void sing() {  System.out.println("빅뱅-거짓말"); }
+} // end class
+public class PolyEx001 {
+	public static void main(String[] args) { 
+		Papa mypapa = new Son2();    
+		// Q3. Papa mypapa 의미?
+		// Q4. 인스턴스화한 실제 메모리 빌려온그림
+		System.out.println(mypapa.money); // Q5.  출력   
+		mypapa.sing();  //Q6. 출력 
+		 //Q7. mypapa.money 를 이용해서  1500 출력되게 해주세요.  
+	}
+}
+
+
+연습문제2)  다형성
+패키지명 : com.company.java012_ex
+클래스명 : PolyEx002 
+다음과 같이 코드를 작성하시오.
+class Parent7  extends Object{
+	int x = 100;
+	public Parent7() { super(); }
+	void method() { System.out.println("Parent Method"); }
+} 
+class Child7 extends Parent7 {
+	int x = 200;
+	public Child7() { super(); }
+	@Override  void method() { System.out.println("Child Method"); }
+}
+public class PolyEx002 {
+	public static void main(String[] args) {
+		Parent7 p = new Child7();     
+		// Q3.  Parent7 p   보장하는 범위   
+		// Q4. 인스턴스화 했을때 사용가능한 범위 : new Child7()  
+		
+                            Child7 c = new Child7();     
+		System.out.println("p.x = " + p.x);  // Q5. 출력되는 내용   
+		p.method();  // Q6. 출력되는 내용     
+		System.out.println("c.x = " + c.x);   // Q7. 출력되는 내용  
+		c.method();   // Q8. 출력되는 내용   
+	}
+}
+
+
+
+
+
+
+
+● 8.abstract
+1. 추상화( abstract )
+  - 실체화된 객체들 간에 공통되는 특성을 추출한 것
+  - 미완성적인 개념 ( new 사용하지 못함 )
+  - 공통된 필드와 메서드의 이름을 통일할 목적
+  
+2. 추상클래스 
+abstract class Animal{  // abstract class
+    String name;        // 인스턴스변수- this
+	abstract void sound();  // abstract method {}구현부 없음!
+}
+class Cat extends Animal{
+	@Override void sound(){  }
+}
+2-1. Animal ani = new Animal(); X
+2-2. 자식클래스를 이용해서 구현해야함.
+
+
+
+
+
+● 9.interface
+1. interface
+- 개발코드와 객체사이 연결
+- 개발코드변경없이 객체를 바꿔낄 수 있도록 하는 역할
+
+2. abstract( Is A : 고양이는 동물이다) vs interface( can do this )
+ - 추상화정도가 interface가 더 높다
+  1) abstract - 인스턴스변수,일반메서드 추상메서드 둘다 가질 수 있으나
+  2) interface - 상수와(public static final) + 추상메서드(public abstract)만 가짐
+  
+3. 프로젝트진행시 interface 사용하면
+   다른 구성원들이 각각의 부분을 완성할 때까지 기다리지 않고
+   규약만 정해두고 본인부분만 작성
+   
+4. interface 형식
+
+   interface 인터페이스명 {
+   	  상수;  // public static final 붙음! method area
+   	  추상메서드; // public abstract 붙음!  {}X- this X
+   }
+   
+   class interSon implements 인터페이스명{  }
+   
+   class interSon2 extends 클래스명 implements 인터페이스명1, 인터페이스명2{  }
+   // 구현력이 없어서 다중상속가능
+
+
+
+
+
+
+
+● 10. 익명클래스
+1. 익명클래스 
+   - 이름이 없는 객체,
+   - 한번만 사용하고 버려지는 객체를 사용할 때 
+   - 인터페이스 테스트, ui이벤트 처리객체
+
+
+
+
+연습문제1)  익명클래스
+패키지명 : com.company.java014_ex
+클래스명 : NoNameClassEx001
+다음과 같이 코드를 작성하시오.
+    interface Calc{ public double exec(double num1, double num2); }
+
+   사용하는부분)  익명클래스 Calc 인터페이스 테스트하기
+   - 구현객체안만들고 exec를 이용해서 더하기 기능이 가능한지 확인
+   System.out.println(calc.exec(10,3));  //13  더하기기능
+
+
+연습문제2)  부품조립방법
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
