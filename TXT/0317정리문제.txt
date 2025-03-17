@@ -1,0 +1,73 @@
+Q1.   클래스에서 사용가능한 변수들의 범위와 역할
+1-1. 자바메모리구조 - [  RUNTIME DATA AREA  ]
+1-2. RUNTIME DATA AREA를 적으시오.
+1) (  method  )     area : 정보저장( 클래스정보, static, final )
+2) (   heap  )    area : 실체화(객체-인스턴스)저장 , Garbage Collector가 처리 
+3) (   stack  )     area : 임시값 저장 , 메서드의 작업공간 , 지역변수 잠깐사용되는 데이터
+
+Q2. class  vs   instance  를 설명하시오.
+
+class 설계도 : 틀로서 객체화 해서 사용
+instance 객체 : 틀을 사용하여 실제 메모리상에 올려서 사용하는것
+
+Q3. 다음의 의미를 적으시오.
+		   A1  a = new A1(); 
+
+A1이란 클래스로 A1을 초기화 시켜서 객체를 생성하고 그 주소를 a에 담는당.
+
+Q4. 다음예제에서 class 와 instance를 메모리 구조와 연결지어서 설명하시오.
+class A1{}
+public class Class001 {
+	public static void main(String[] args) {//jvm - main 구동시점
+		// int i;   자료형 변수명;
+		   A1  a = new A1(); 
+		   System.out.println(a);
+		   A1  a2 = new A1();
+		   A1  a3 = new A1();
+	}
+}
+메서드영역에 A1.class, Class001.class main이 생성
+stack영역에 a 를 생성하고 method 영역에 있는 A1.class 를 사용 heap 영역에 객체를 생성한 다음 그 주소를 a에 담는다.
+stack영역에 a2 를 생성하고 method 영역에 있는 A1.class 를 사용 heap 영역에 객체를 생성한 다음 그 주소를 a2에 담는다.
+stack영역에 a3 를 생성하고 method 영역에 있는 A1.class 를 사용 heap 영역에 객체를 생성한 다음 그 주소를 a3에 담는다.
+
+Q1. rdb? 
+> 관계형 데이터베이스 - 테이블들이 관계(외래키)
+Q2. mysql 에 접속하는 코드는?    아이디root  / 비번 1234 
+> mysql -uroot -p
+Q3. database 만들기 db명 : db1
+> create database db1;
+Q4. db1 사용
+> use db1
+Q5. db1 안에 테이블만들기 :  userinfos
+    번호 : no      자료형 int   필수입력 , 숫자자동증가, 기본키
+    이름 : name  자료형 varchar(100)  필수입력
+    나이 : age    자료형  int
+> create table userinfos(
+	no int not null auto_increment primary key,
+	name varchar(100) not null,
+	age int	
+   );
+   desc userinfos;
+   show tables;
+Q6. userinfos테이블에 age  int   필수입력으로 변경하시오
+> alter table userinfos modify age int not null;
+Q7. userinfos 테이블에   name  varchar(50)   필수입력   수정하시오.
+> alter table userinfos modify name varchar(50) not null;
+Q8.  userinfos테이블에   email varchar(50) 추가하시오.
+> alter table userinfos add email varchar(50);
+Q9.  userinfos테이블에   email 삭제하시오.
+> alter table userinfos drop email;
+Q10. userinfos테이블에 테이블명을 userinfo로 수정하시오.
+> alter table userinfos rename userinfo;
+
+Q1. 클라이언트  ↔ 서버  ?
+서비스 이용 (요청->request) 서비스제공(응답->reponse) 
+클라이언트 이용자
+서버 제공자
+> Web(단방향),Socket(양방향)
+Q2. WS 와 WAS ?
+web server : 정적서버(apache)
+was server : 동적서버 (apache + tomcat)
+> 정적콘텐츠와 동적콘텐츠
+Q3. FORM 태그  - 처리컨테이너(action)   /   처리방식 (method) /  데이터넘길때 보관이름 (name)
