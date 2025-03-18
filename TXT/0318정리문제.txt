@@ -1,0 +1,104 @@
+Q1.  생성자
+1.  역할?  (  객체를 생성할때 멤버변수 초기화  ) 
+2.  [클래스 생성]할때 제일먼저 실행되는 특수한형태의 메서드
+3. 생성자는 리턴값이    (  없다  )   
+4. 클래스명과 이름이 (  같다  )
+
+
+Q2. 기본생성자를 반드시 선언해야하는 경우
+     (  생성자 오버로딩   /  상위클래스가 기본생성자를 선언안했을 경우   )
+ 
+
+Q3. 생성자 초기화순서를 적으시오.
+ 기본값 -> 명시적초기화 -> 초기화블럭 - >생성자
+
+Q4. 다음파일을 확인하고  클래스변수, 인스턴스변수, 지역변수를 구분하시오.
+오류가 나면 오류나는 이유를 적으시오. 
+------------------------------------------------------------------------------------------
+class A{
+    int a;   //인스턴스변수
+    static String company;   //클래스변수 
+
+    void method(){  int a=0; System.out.println(a);       }   //지역변수
+    static void   show(){             System.out.println(this.a);  }    //오류발생 : static 안에는 instance가 올 수 없음 why? 메모리에 올라가는 순서가 다르기 때문에
+
+    public A(){   }
+    public A(int a) {   this.a = a;   }      
+}
+---------------------------------------------------------------------------------------------
+
+
+
+Q1. userinfo 테이블의 구조는 다음과 같다 
+mysql> desc userinfo;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| no    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(100) | NO   |     | NULL    |                |
+| age   | int          | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+
+mysql> select * from userinfo;
++----+--------+-----+
+| no | name   | age |
++----+--------+-----+
+|  1 | first  |  11 |
+|  2 | second |  22 |
+|  3 | third  |  33 |
+|  4 | fourth |  44 |
++----+--------+-----+
+4 rows in set (0.00 sec)
+
+>  5 , fifth ,  555 데이터를 추가하시오.
+
+insert into userinfo (name,age) values ('fifth',555);
+
+ Q2.  no가 5번인 데이터의 age를 55로 변경하시오.
+
+> update userinfo set age=55 where no=5;
+
+ Q3.  no가 5번이고 name이 fifth인데이터를 삭제하시오.
+
+> delete userinfo where no=5 and name='fifth';
+
+ Q4.  userinfo 데이터를 출력하시오.
+
+> select*from userinfo;
+
+
+
+Q1.  클라이언트의 파일이다
+전송버튼을 눌렀을때   jsp007_result.jsp파일에서 빠진 코드를 작성하시오.
+
+		<form  action="jsp007_result.jsp" method="get">
+			<div class="my-3">
+				<label for="query"  class="form-label">검색어</label>
+				<input type="text"  class="form-control"  id="query"
+					   name="para" />  
+				<button  type="submit"  class="btn btn-danger">submit</button>	   
+			</div>
+		</form>
+        
+ -----------------------------------------       
+      ## jsp007_result.jsp
+      
+    <div class="container card  my-5">
+		<h3 class="card-header"> MY 검색어</h3>
+		<%
+			String search =  request.getParameter("para")
+		%>
+		<p> 검색어 : <%=search%></p>
+		<p><a href="javascript:history.go(-1)"  class="btn btn-danger">BACK</a></p>
+	</div>
+    
+    
+ Q2.  jdbc를 구현하려고 한다.
+ 필요한 메서드적으시오.
+ 
+ 1)  드라이버로드  ( DriverManager )
+ 2)  DB연동        ( connection )
