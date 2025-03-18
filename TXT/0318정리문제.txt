@@ -100,5 +100,5 @@ Q1.  클라이언트의 파일이다
  Q2.  jdbc를 구현하려고 한다.
  필요한 메서드적으시오.
  
- 1)  드라이버로드  ( DriverManager )
- 2)  DB연동        ( connection )
+ 1)  드라이버로드  ( Class.forName("com.mysql.cj.jdbc.Driver") )
+ 2)  DB연동        ( Connection conn = DriverManager.getConnection("jdbc:mysql://lacalhost:3306/mbasic","root","1234") )
