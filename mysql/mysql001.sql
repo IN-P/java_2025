@@ -5,6 +5,7 @@
 # 	제어어 DCL - grant, revoke
 
 use mbasic;
+show databases;
 show tables;
 desc userinfo;
 create table userinfo_repeat(

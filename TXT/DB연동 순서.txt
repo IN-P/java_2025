@@ -1,0 +1,44 @@
+ctrl + n dynamic web project 
+프로젝트명 작성 하고 next next
+Generate web.xml deployment descriptor 체크후 finish
+ 
+Severs 탭에서 아파치톰캣 더블클릭
+
+Sever Locations 에서 두번째
+Use Tomcat installation 체크
+
+Server Options 에서 2번째 3번째
+Publish module contexts to separate XML files 체크
+Modules auto reload by default 체크
+
+아래 초록색 재생버튼 클릭 >>서버연결
+주소표시줄에 http://localhost:8080/ 연결확인
+
+---java 프로젝트일 경우 -------------------------------------
+프로젝트 우클릭 Build Path > Configue Build Path
+Java Build Path 탭에서 Libraries 탭 Classpath 에서
+Add External JARs... 에서
+mysql-connector-j-8.0.33.jar(버전에 맞는) 추가
+-----------------------------------------------------------------
+---jsp 프로젝트일 경우---------------------------------------
+src\nain\webapp\WEB-INF\lib 폴더에 mysql-connector-j-8.0.33.jar(버전에 맞는) 복사
+-----------------------------------------------------------------
+
+jsp파일에서 
+<%@ page import="java.sql.*" %>
+<%
+Connection conn = null;
+try {
+	//1) 드라이버 로딩
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	
+	//2) jdbc 연동
+	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mbasic","root","1234");
+	if (conn != null) {out.println("db연동성공!");}
+	conn.close();
+} catch (Exception e) {e.printStackTrace();
+} finally { if (conn !=null) { conn.close();}}
+//mysql -uroot -p
+%>
+
+
