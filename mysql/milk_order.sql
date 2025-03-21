@@ -7,6 +7,7 @@ onum int not null,
 odate datetime default now(), -- current_timestamp 대신에 now() 사용가능 
 oip varchar(100) not null
 ); 
+ 
 select*from milk_order;
 -- Q1.  milk_order 값삽입.  insert 구문 완성    (oname, onum, oip)     'white' , 2,  '127.0.0.1'
 insert into milk_order (oname,onum,oip) values ('white',2,'127.0.0.1');

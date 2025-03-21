@@ -25,8 +25,8 @@
 
 		int result  = pstmt.executeUpdate();
 		
-		if (result>0) {out.println("<script>alert('주문수정성공!'); location.href='milk.jsp';</script>");}
-		else {out.println("<script>alert('관리자에게 문의바람!'); location.href='milk.jsp';</script>");}
+		if (result>0) {out.println("<script>alert('Successfully reordered is NO."+ono+"!'); location.href='milk.jsp';</script>");}
+		else {out.println("<script>alert('Ask the manager!'); location.href='milk.jsp';</script>");}
 		
 	} catch (Exception e) {
 		e.printStackTrace();

@@ -29,18 +29,15 @@
 		
 		
 		if (result>0) {
-			pstmt = conn.prepareStatement("select ono from milk_order where oname=? and onum=?");
-			pstmt.setString(1,oname);
-			pstmt.setInt(2,onum);
+			pstmt = conn.prepareStatement("select last_insert_id()");
 			rset = pstmt.executeQuery();
+			rset.next();
+			int ono = rset.getInt(1);
+			out.println("<script>alert('Order successful! The number you ordered is NO."+ono+"'); location.href='milk.jsp';</script>");
 			
-			if (rset.next()) {
-				int ono = rset.getInt("ono");
-				out.println("<script>alert('주문성공! 주문하신 번호는 "+ono+"입니다.'); location.href='milk.jsp';</script>");
-			}
 		}
-		else {out.println("<script>alert('관리자에게 문의바람!'); location.href='milk.jsp';</script>");}
-		//location.href=''; 주소표시찰줄경로바꾸기
+		else {out.println("<script>alert('Ask the manager!'); location.href='milk.jsp';</script>");}
+		//location.href=''; 주소표시창줄경로바꾸기
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
