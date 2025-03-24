@@ -118,7 +118,7 @@
 				<div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
 					<div class="card-body">
 <!-- 주문하기 -->
-						<form action="milk_insert.jsp" method="post">
+						<form action="milk_insert.jsp" method="post" onsubmit="return blank1()">
 							<div class="mb-3 mt-3">
 								<label for="oname" class="form-label">MILK NAME :</label> 
 								<input type="text" class="form-control" id="oname" placeholder="Write down the name of the milk you want to order!!" name="oname">
@@ -129,6 +129,14 @@
 							</div>
 							<button type="submit" class="btn btn-danger"> PLACE ORDER </button>
 						</form>
+						<script>
+					      function blank1(){
+					          let oname = document.querySelector("#oname");
+					          let onum = document.querySelector("#onum");
+					          if(oname.value==""){alert('빈칸'); oname.focus(); return false;}
+					          if(onum.value==""){alert('빈칸'); onum.focus(); return false;}
+					        } 
+						</script>
 					</div>
 				</div>
 			</div>
@@ -140,7 +148,7 @@
 				<div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 <!-- 주문수정 -->
-						<form action="milk_update.jsp" method="post">
+						<form action="milk_update.jsp" method="post" onsubmit="return blank2()">
 							<div class="mb-3 mt-3">
 								<label for="ono_update" class="form-label">MILK NO :</label> 
 								<input type="number" class="form-control" id="ono_update" placeholder="Please enter the order number to be modified!!" name="ono_update">
@@ -154,7 +162,17 @@
 								<input type="number" class="form-control" id="onum_update" placeholder="Write down the number of milk to order!!" name="onum_update">
 							</div>
 							<button type="submit" class="btn btn-danger"> MODIFY ORDER </button>
-						</form>					
+						</form>
+						<script>
+					      function blank2(){
+					          let ono_update = document.querySelector("#ono_update");
+					          let oname_update = document.querySelector("#oname_update");
+					          let onum_update = document.querySelector("#onum_update");
+					          if(ono_update.value==""){alert('빈칸'); ono_update.focus(); return false;}
+					          if(oname_update.value==""){alert('빈칸'); oname_update.focus(); return false;}
+					          if(onum_update.value==""){alert('빈칸'); onum_update.focus(); return false;}
+					      } 
+						</script>					
 					</div>
 				</div>
 			</div>
@@ -166,13 +184,19 @@
 				<div id="collapseThree" class="collapse" data-bs-parent="#accordion">
 					<div class="card-body">
 <!-- 주문삭제 -->	
-						<form action="milk_delete.jsp" method="post">
+						<form action="milk_delete.jsp" method="post" onsubmit="return blank3()">
 							<div class="mb-3 mt-3">
 								<label for="ono_delete" class="form-label">MILK NO :</label> 
 								<input type="number" class="form-control" id="ono_delete" placeholder="Please enter the order number to be deleted!!" name="ono_delete">
 							</div>
 							<button type="submit" class="btn btn-danger"> DELETE ORDER </button>
 						</form>
+						<script>
+					      function blank3(){
+					          let ono_delete = document.querySelector("#ono_delete");
+					          if(ono_delete.value==""){alert('빈칸'); ono_delete.focus(); return false;}
+					      } 
+						</script>	
 					</div>
 				</div>
 			</div>
