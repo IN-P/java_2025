@@ -126,3 +126,11 @@ from dept d natural left join emp e1
 left join salgrade s on e1.sal between s.losal and s.hisal
 left join emp e2 on e1.mgr = e2.empno
 order by d.deptno,e1.empno;
+
+-- 아기질문
+select * from emp e
+where sal < all (select max(sal) from emp where deptno=e.deptno)
+order by sal;
+select * from emp
+where sal < all (select max(sal) from emp group by deptno)
+order by sal;

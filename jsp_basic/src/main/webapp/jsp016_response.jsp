@@ -34,8 +34,8 @@
 		
 		<form  action="jsp016_2.jsp"  method="post" onsubmit="return blank()"> 
 			<div class="mb-3 mt-3">
-					<label for="userage">나이입력</label>
-					<input type="text"  id="userage"   name="userage"    class="form-control" />
+				<label for="userage">나이입력</label>
+				<input type="text"  id="userage"   name="userage"    class="form-control" />
 			</div>
 			<div class="mb-3 mt-3">
 				<input type="submit"  value="LOGIN"  class="btn btn-danger" />
