@@ -24,7 +24,8 @@
 		if (rset.next()) {result = rset.getInt("cnt");}
 			
 		if (result==1) {
-			request.getRequestDispatcher("jsp022_my.jsp").forward(request,response);
+			//request.getRequestDispatcher("jsp022_my.jsp").forward(request,response);
+			out.println("<script>alert('login success'); location.href='jsp022_my.jsp';</script>");
 			session.setAttribute("id",id);			
 		} else {
 			out.println("<script>alert('정보를 확인해주세요'); history.go(-1);</script>");
