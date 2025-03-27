@@ -130,3 +130,128 @@ Context envContext  = (Context)initContext.lookup("java:/comp/env");
 DataSource ds = (DataSource)envContext.lookup("jdbc/mbasic");
 Connection conn = ds.getConnection();
 
+
+Q1. mvc 란?
+- 모델 뷰 컨트롤러
+→ 서로 영향없이 쉽게 고칠 수 있는 애플리케이션
+
+Q2. mvc1 vs  mvc2 란?
+→ 컨트롤러 역할을 jsp가 담당하냐 servlet이 담당하냐
+
+Q3. DBCP란?
+→ 분산응용프로그램
+→ db커텍션 객체를 미리 (pool)에 생성해두고 사용
+→ 데이터베이스 과부화 줄이기
+
+Q4. jsp는   ( html )  + ( java )    
+     mvc에서의 역할은?
+→ 뷰
+
+Q5.  servlet 은  (  java  ) 
+     mvc에서의 역할은?
+→ 컨트롤러
+
+Q6. DBCP를 설정하는 방법을 설명하시오.
+→ jar 3개다운로드 - dbcp, collections, pool
+→ Server - [server.xml] pool 설정 <Resource/>
+→ 진행프로젝트 - [webapp] - [web-inf] - web.xml <resource-ref>
+→ test 파일
+
+Q7.  dynamic web project에서 jsp 가 위치하는 영역은  ( 웹앱 )   , 
+servlet이 위치하는 영역은 (  자바 리소스 ) , 
+라이브러리들 .jar 파일들이 들어가는위치는 (  [web-inf] - lib  ) 
+
+Q8.  request 가오면 ( [web-inf] - web.xml )  파일을 참고해서 controller를 찾는다.
+
+Q9.  로그인 후 id를 유지하려고하면 (  세션  )  를 이용한다.
+      셋팅이름은  username , 값은 name변수로  지정하시오.
+→   session.setAttribute("username", name); 
+
+Q10.  application scope의 범위를 적으시오.
+→  application > session > request > pageContext
+
+■ PART002
+#1. frontcontroller board 게시판완성
+#2. 개발사이트 api + ajax
+#3. [숙제] - api 2개이상 / upgrade 기능업그레이드
+
+1) dunamic web pronject- JOAbooks
+2) inc - header / footer
+3) error page 설정 - 404 , 500
+4) dbcp 연동
+
+DB : table명 - board
+글번호   bno      int        not null,auto_increment pk
+글제목   btitle      varchar(1000) not null
+글내용   bcontent      text         not null
+글쓴이    bname      varchar(100)   not null
+조회수   bhit      int                      default(0)
+글쓴날짜  bdate      timestamp     not null  default current_timestamp
+아이피   bip      varchar(100)   not null
+
+-글pw   bpw
+
+
+DTO           : [com.company.domain] - BoardVO private
+DBManager :  [com.company.dbmanager] - DBManager
+DAO          : [com.company.dao] - BoardDao
+............................................................................................................................................................
+글쓰기: 
+insert into board (btitle, bcontent, bname, bip) values (?,?,?,?);
+
+최신글읽기:
+select * from board order by bno desc >> 늦게 올릴수록 bno값 커지니까
+
+해당글읽기:
+select * from board where bno=?
+ 조회수: update board set bhit=bhit+1 where bno=? 
+
+해당글수정
+ 수정폼 : select * from board where bno=?
+update board set btitle=? bcontent=? where bno=?
+
+해당글삭제
+delect from board where bno=?
+..................................................................................................................................................................
+executeQuery - select (표)
+executeUpdate - insert, update, delete (실행줄수)
+
+리턴값 메서드명() {}  
+
+
+  1. 글쓰기             -  insert   into  board (  btitle  , bcontent, bname , bip   )  values (  ?,?,?,?  )
+- public int insert( BoardVO vo){ result 0; }
+
+  2. 최신글읽기       -  select * from board order by bno desc
+- public ArrayList<BoardVO> selectAll(){ result null; }
+
+  3. 해당글읽기/해당글수정폼        -  select * from board where  bno =?
+- public BoardVO select( int bno ){ return null; }
+
+  4. 조회수증가       -  update board  set  bhit=bhit+1  where  bno=?
+- public int updateHit( int bno ){ return 0; }
+
+  5. 해당글수정기능 -  update  board  set  btitle=? , bcontent=?  where bno=?
+- public int update ( BoardVO vo) { return 0; }
+
+  6. 해당글삭제       -  delete   from board  where bno=?
+- public int delect(int bno) { return 0; }
+
+
+test 
+
+[com.company.controller] - [FrontController]   *.do
+
+[클라이언트 요청]   
+↓
+index.jsp  ->  *.do   [FrontController]
+       ㄴ  /list.do           - C:전체리스트        BList        /      V:list.jsp 
+       ㄴ  /write_view.do - C:X                                          V:write.jsp 
+       ㄴ  /write.do        - C:글삽입             BWrite(알림창- 성공/실패) /   V: /list.do
+       ㄴ  /detail.do      - C:해당번호 상세보기  BDetail(조회수올리기/해당글상세)
+                                      V:detail.jsp
+       ㄴ  /edit_view.do  - C:해당번호 글수정폼  BEditView(해당글상세)
+                                      V:edit.jsp
+       ㄴ  /edit.do       - C:해당번호 글수정기능 BEdit(해당글수정)
+                                      V: /detail.do 
+       ㄴ  /delete.do     - C:해당번호 글삭제기능 BDelete(해당글삭제)      V: /list.do
