@@ -8,7 +8,7 @@
 		<h2 class="card-header text-center">MULTIBOARD - 글쓰기</h2>
 		<h3 class="card-header">WRITE(CREATE)</h3>
 		
-		<form action="" method="" onsubmit="return blank()">
+		<form action="write.do" method="get" onsubmit="return blank()">
 			<div class="mb-3 mt-3">
 				<label for="bname" class="form-label">이름</label> 
 				<input type="text" class="form-control" id="bname" placeholder="이름" name="bname">
@@ -24,7 +24,7 @@
     		<div class="d-grid gap-3">
 				<button type="submit" class="btn btn-danger btn-outline-dark btn-block ">입력</button>
 				<input type="reset" value="취소" class="btn btn-outline-dark btn-block">
-				<a href="list.jsp" class="btn btn-outline-dark btn-block">목록</a>
+				<a href="list.do" class="btn btn-outline-dark btn-block">목록</a>
     		</div>				
 						
 		</form>

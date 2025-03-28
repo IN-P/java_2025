@@ -170,6 +170,68 @@ Q9.  로그인 후 id를 유지하려고하면 (  세션  )  를 이용한다.
 Q10.  application scope의 범위를 적으시오.
 →  application > session > request > pageContext
 
+Q11.  데이터 베이스 언어인 dml 을 설명하시오.
+   - CRUD
+   - 데이터 조작어 (Data Manipulation Language)
+   - 레코드 조회, 수정, 삭제 역할 select, insert,update,delete
+
+
+Q12.  PreparedStatement 에서   sql 문 실행서  insert, update, delete 에서는 (  executeupdate    )를 사용.  
+        select에서는 (  executeQuery  )를 사용한다.
+
+Q13. frontController 패턴을 설명하시오.
+   1. mvc
+   2. mvc1 - sjp가 controller 역할
+   3. mvc2 - servlet이 controller 역할
+   4. frontcontroller - 클라이언트가 보낸 요청을 받아서 공통작업(인증, 권한)을 먼저 수행
+         적절한 세부 controller에게 작업을 위임 ( 처리 + 뷰선택 )
+
+Q14. *.do를 설정하려고 한다.   setvlet의 경로를 가져오는 request메서드는?
+   방법1. @WebServlet("*.do") Servlet - 테스트
+   방법2. web.xml   = 배포관리용도
+      <servlet></servlet>
+      <servlet-mapping></servlet-mapping>
+
+
+Q15.  다형성이란?
+   →하나의 자료형으로 여러 자료형을 관리하려고
+   →부모자료형으로 자식자료형을 관리하려고
+
+Q16.  request/ response유지하고 경로를 숨기고 다른화면으로 넘어가는 것은?
+   //dispatcher
+   - request.getRequestDispatcher("경로").forward(request, response);
+
+Q17.   request/ response유지안되고  다른화면으로 넘어가는  3가지 방법은?
+   //1. sendRedirect
+     - response.sendRedirect("경로")
+
+   //2. location.href 주소표시창줄 바꾸기
+        - out.println("<script>alert('알림창'); location.href='경로';</script>");
+
+   //3. meta http-equiv='refresh' 새로고침   
+     - out.println("<meta http-equiv='refresh' content='몇초;url=경로'");
+
+Q18.   다음과 같이 경로를 넘어가려고 한다. 
+    request/ response유지안되고  다른화면으로 넘어가는  3가지 방법중  alert 가 처리 안되는 것은?
+   - out.println("<script>alert('알림창'); location.href='경로';</script>");
+     response.sendRedirect("경로")
+
+
+2. Service
+    [com.company.service]
+
+        <<interface>> BoardService   - exec(request, response)   
+   ↑             ↑            ↑            ↑            ↑           ↑  
+   BList   BWrite        BDetail     BEditView     BEdit       BDelete   
+
+>   BList     전체리스트   -  dao.list()
+>   BWrite    글삽입       -  dao.insert(dto)  / 알림창- 성공/실패
+>   BDetail   상세보기     -  dao.updateHit(dto) , dao.detail(dto)
+>   BEditView 글수정폼   -  dao.detail(dto)
+>   BEdit     글수정        -  dao.update(dto)  / 알림창- 성공/실패
+>   BDelete   해당글삭제-  dao.delete(dto)  / 알림창- 성공/실패
+  
+
 ■ PART002
 #1. frontcontroller board 게시판완성
 #2. 개발사이트 api + ajax
@@ -255,3 +317,33 @@ index.jsp  ->  *.do   [FrontController]
        ㄴ  /edit.do       - C:해당번호 글수정기능 BEdit(해당글수정)
                                       V: /detail.do 
        ㄴ  /delete.do     - C:해당번호 글삭제기능 BDelete(해당글삭제)      V: /list.do
+
+■ PART005 필요기능
+1. el/jstl
+>el
+  - 표현식 (출력)
+  - <%=%>
+  - ${}
+>jstl(JavaServer page Standard Tag Library)
+  - before:<%= if %>
+  - after : <c:if test=></c:if> / <c:forEach items=""var=""></c:forEach>
+
+2. admin만 글쓰기 (session 정리)
+3. Naver api
+  [com.company.util] - NaverBook.java
+4. ajax
+
+-1.  반복문, 조건문 등의 기본구현
+-2.  사용법
+ 1. http://jakarta.apache.org/
+ 2. 왼쪽메뉴 :  Tablibs
+ 3. Standard Taglib -  다운로드 - jakarta-taglibs-standard-1.1.1.zip
+ 4. [WEB-INF]-[lib] - jstl.jar / standard.jar
+<%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+-3. jstl 라이브러리
+  core : 기본적인 기능제공
+  fmt  : format 형식
+  xml  : xml관련처리
+  sql  : sql관련처리
