@@ -1,0 +1,10 @@
+INDEX VERSION 1.4+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2120594175.index
+333419766.index
+36888575.index
+136475183.index
+945631391.index
+1119131035.index
+124605818.index
+752294649.index
+2135664392.index

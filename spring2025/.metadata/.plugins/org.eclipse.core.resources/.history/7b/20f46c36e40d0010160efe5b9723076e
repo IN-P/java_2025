@@ -1,0 +1,11 @@
+package com.company.ioctest;
+
+public class CalcRectangle implements Calc {
+
+	@Override
+	public double exec(double d1, double d2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
