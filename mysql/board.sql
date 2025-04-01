@@ -9,3 +9,4 @@ bdate timestamp not null default current_timestamp,
 bip varchar(100) not null
 );
 desc board;
+select * from board;

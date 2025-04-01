@@ -3,6 +3,8 @@
 <aop-project name="projectName"/>
 <aop-project name="spring003_bean"/>
 <aop-project name="spring001_di"/>
+<aop-project name="spring005_ex_board"/>
 <aop-project name="spring000"/>
 <aop-project name="spring002_di_ex"/>
+<aop-project name="spring004_mybatis"/>
 </aop-reference-model>
