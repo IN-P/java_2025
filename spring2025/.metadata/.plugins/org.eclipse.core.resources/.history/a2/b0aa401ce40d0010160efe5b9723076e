@@ -1,5 +1,0 @@
-package com.company.ioctest;
-
-public interface Calc {
-
-}
