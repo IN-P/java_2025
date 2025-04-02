@@ -440,3 +440,184 @@ mysql> desc sboard;
 | bip      | varchar(50)   | NO   |     | NULL              |                   |
 +----------+---------------+------+-----+-------------------+-------------------+
 8 rows in set (0.00 sec)
+
+
+
+Q1. [spring test] SPRING에서 JunitTest를  하려고 한다 
+      pom에서 다운로드 받을때 필요한 것은?  ( junit , spring-context   , spring-test  )
+Q2. [mysql 연동] SPRING에서 MYSQL를 연동하려고 한다 
+      pom에서 다운로드 받을때 필요한 것은?  (mysql-connector-java  ,   spring-jdbc)
+Q3.[mybatis 연동] spring에서 mybatis를 사용하려고 한다.
+      pom에서 다운로드 받을때 필요한 것은?  (  mybatis ,  mybatis-spring   )
+
+Q4. root-context.xml 에서 DataSource를 연동하려고 한다.  필요한 클래스이름은?
+       SimpleDriverDataSource
+
+Q5. 위의 클래스에서 Setter를 이용하여 Property를 지정하려고한다.  
+     property 이름을 적으시오.  (    driverClass     , url ,  username ,   password)
+Q6. mybatis에  (  sqlSessionFactory )는   sqlSession을 생성 및 관리,  
+                     (  sqlSession           ) 은 sql을 실행한다.
+
+Q7.  다음을 작성하시오.
+7-1. spring project    -  spring006_mybatis2만들기
+7-2. Datasource를 셋팅하고   db.properties를 이용하여   datasource를 연동하시오 > SimpleDriverDataSource
+7-3. Mybatis를 셋팅하고   다음 테이블의 crud를 테스트하시오.
+select now() 
+
+-------------------------------
+#5. DB / MYBATIS (2)
+-------------------------------
+
+▶1.  mybatis (1)
+- TestDao, Impl, mapper.xml 의 파일량줄이기
+-  SqlSession sqlSession , namespace="com.company.dao.TestDao" 코드안에 있어서 불편, 설정파일설정
+TestDao <<interface>>
+    ↑   
+TestDaoImpl <<class>>
+====================
+   @Repository
+   public class TestDaoImpl implements TestDao{
+      @Autowired  private SqlSession sqlSession;  //sql 실행
+      ivate static final String namespace="com.company.dao.TestDao";   ... 코드생략
+   }
+====================
+test-mapper.xml
+
+▶2. mybatis (2)
+-root-context.xml 설정파일
+
+before: 구현클래스 삭제 
+@Autowired  private SqlSession sqlSession;  //sql 실행
+ivate static final String namespace="com.company.dao.TestDao";
+
+
+after: root-context.xml 설정
+<bean id="" clss="MapperFactoryBean">
+
+</bean>
+
+1. 006_1 mybatis 프로젝트 복사
+2. 006_2 mybatis 프로젝트 복사 - Ipml 구현클래스삭제 / root-context 수정
+
+연습문제) BoardTestEx 가서 MapperFactoryBean 버전으로 수정
+
+▶3. mybatis (3)
+- MapperFactoryBean 매번 설정이 힘듦. 모든 mapper에 설정하기 힘듦
+
+- 해결방안 : MapperScannerConfigurer
+1. MyDao
+   public @interface MyDao{}
+2. mapper로 만들어주는 interface 
+   @MyDao public interface TestDao{}
+   @MyDao public interface UserDao{}
+   @MyDao public interface BoardDao{}
+3. MyDao root-context.xml 등록
+<bean id="" class="MapperScannerConfigurer">
+</baen>
+
+-------------------------------
+#6. mvc project
+-------------------------------
+▶1. mvc
+>> 서로 영향없이 쉽게 고칠수 있는 애플리케이션을 만들자!
+Model       - 정보 (dto,dao, service)
+View        - 화면 (html/css/is/jquery)
+Controller  - 처리 (요청을 받아서 처리후 응답)
+
+▶2. mvc1 vs mvc2
+mvc1 - controller의 역할을 jsp 담당
+mvc2 - controller의 역할을 servlet 담당
+frontcontroller - 공통작업수행 → 세부컨트롤러 처리 
+
+▶3. spring MVC
+[client]
+↓ ① list.do
+[frontcontroller]
+<<DispatcherServlet>> → ② HandlerMapping - @Controller
+                               ↓
+                        ③ 세부Controller - db가 필요하면 db처리
+                              ↓↑
+                           ④ View
+
+① 클라이언트 (코요테 - web.xml - root-context.xml / servlet-context.xml)
+② DispatcherServlet - HandlerMapping - @Controller / 처리할 Controller 확인
+③ 세부Controller 클라이언트 요청처리 (service - 비지니스로직)
+④ 요청결과와 View정보를 DispatcherServlet 줌 / View를 개체를 생성해서 응답
+
+1. 실습 
+1) pom.xml spring-webmvc 등록
+2) web.xml ContextLoaderListner (스프링구동) / DispatcherServlet (Frontcontroller)
+               root-context.xml (db설정) / servlet-context.xml (view servlet 설정)
+3) config/servlet-context.xml
+
+2. 실습
+1) spring010_mvc 만들기
+2) pom.xml
+   <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-webmvc</artifactId>
+       <version>3.2.17.RELEASE</version>
+   </dependency>
+3) web.xml
+   ContextLoaderListner (스프링구동) / DispatcherServlet (Frontcontroller)
+         root-context.xml (db설정) / servlet-context.xml (view servlet 설정)
+4) servlet.xml
+   4-1. @Controller 위치
+      <context:component-scan base-package="com.company.controller" />
+   4-2. Model model (처리결과)
+      <mvc:annotation-driven/>
+   4-3. ViewResolver
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

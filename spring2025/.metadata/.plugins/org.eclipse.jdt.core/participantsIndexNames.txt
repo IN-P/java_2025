@@ -1,3 +1,17 @@
 INDEX VERSION 1.131
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1395747264.index
+\spring010_mvc1\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\518396470.index
+\spring011_ex_board\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\902789866.index
+\spring010_mvc\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4215451446.index
+\spring010\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\918848385.index
+\spring011_ex_board\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\741471816.index
+\spring10_2\src\main\java
 D:\fullstack\spring\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2403467519.index
 \projectName\src\main\java
+D:\fullstack\java_2025\spring2025\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2929285177.index
+\spring011_ex_board\src\main\java
