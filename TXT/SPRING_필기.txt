@@ -574,6 +574,42 @@ frontcontroller - 공통작업수행 → 세부컨트롤러 처리
 	</bean>
 
 
+==================================
+#7. 유용한 기능들
+==================================
+1. jstl
+2. dto → lombok
+3. aop (관점지향)
+4. HikariCP (dbcp / sql 과정 다 보이게)
+5. Tx ( sql 여러개 실행될 때 중간에 실패하면 sql 다 처리 안되게)
+
+▶ jstl
+1. pom.xml
+      <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
+         <version>1.2</version>
+      </dependency>
+
+2. Model
+- table
+- dto UserDto / mapper-config.xml
+- dao UserDao / user-mapper.xml / root-context.xml(등록)
+
+3. @Repository Dao (sql 실행)
+   @Service - 비지니스로직 처리하는기능
+   상세보기 : 조회수올리는 sql / 해당번호 상세보기 데이터
+   수정보기 : 해당번호 상세보기 데이터
+   글쓰기 : 이미지올리기기능 / 그이미지이름경로 insert시 저장
+
+
+
+==================================
+#8. restful
+==================================
+
+
 
 
 
