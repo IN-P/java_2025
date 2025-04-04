@@ -41,10 +41,37 @@
     	<constructor-arg  ref="sqlSessionFactory" />
     </bean>
 
-
+<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	        <list>
+	            <value>classpath:/config/log4jdbc.log4j2.properties</value>
+	        </list>
+	    </property>
+	</bean> -->
 
     <!-- Step1) Driver driver, String url, String username, String password -->
-    <context:property-placeholder  location="classpath:config/db.properties" />
+	<context:property-placeholder  location="classpath:config/db.properties" />
+	<bean id="hikariConfig"   class="com.zaxxer.hikari.HikariConfig">
+		  <property name="driverClassName"   value="${db.driverClassName}" />
+		  <property name="jdbcUrl"           value="${db.url}"        />
+		  <property name="username"      value="${db.username}"   />
+		  <property name="password"      value="${db.password}"   />
+	</bean>    
+    <bean id="datasource"  class="com.zaxxer.hikari.HikariDataSource" 
+    	  destroy-method="close">
+    	<constructor-arg  ref="hikariConfig" />
+    </bean>
+    
+    
+    
+
+
+
+</beans>
+
+
+    
+ <!--    <context:property-placeholder  location="classpath:config/db.properties" />
 	<bean id="datasource"   
 		  class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		  <property name="driverClass"   value="${db.driverClass}"></property>
@@ -52,5 +79,5 @@
 		  <property name="username"      value="${db.username}"   ></property>
 		  <property name="password"      value="${db.password}"   ></property>
 	</bean>
-
-</beans>
+ -->
+	

@@ -3,7 +3,8 @@
 
 <div class="container"  style="margin-top:5%; min-height:500px">
 		<h3>MULTIBOARD 삭제</h3>
-		<form action="" method="post"   id="deleteForm"> 
+		<form action="${pageContext.request.contextPath}/board/delete?bno=${param.bno}" 
+			  method="post"   id="deleteForm"> 
 			<div class="form-group">
 			  <label for="bpass"  >비밀번호</label>
 			  <input type="password"   name="bpass"   id="bpass"   class="form-control" > 

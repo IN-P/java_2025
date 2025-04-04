@@ -14,10 +14,10 @@ import com.company.dto.BoardDto;
 @Service  // component-scan
 public class BoardServiceImpl implements BoardService {
 	@Autowired  BoardDao dao;   // ctrl + shift + o
-	@Override public int insert(BoardDto dto) {
-		try {
-			dto.setBip(InetAddress.getLocalHost().getHostAddress());
-		} catch (UnknownHostException e) { e.printStackTrace(); }
+	@Override public int insert(BoardDto dto) { 
+		try { dto.setBip(InetAddress.getLocalHost().getHostAddress()); }
+		catch (UnknownHostException e) { e.printStackTrace(); }
+		
 		return dao.insert(dto); 
 	}
 	@Override public int update(BoardDto dto) { return dao.update(dto); }

@@ -28,7 +28,10 @@
 				<input type="submit"   value="입력"  class="btn btn-default"  style="color:white; background-color:#f4511e"   >  
 				<input type="reset"    value="취소"  class="btn btn-default"    >  
 				<a href="${pageContext.request.contextPath}/board/list"   class="btn btn-default"   >목록보기</a>
-			</div>
+			</div>  <!-- 
+			 board/list		http://localhost:8081/spring013_ex_board/board/board/list 
+			/board/list     http://localhost:8081/board/list
+			-->
 		 </fieldset>		
 		</form> <!-- end form -->	
 </div>
