@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="container mt-5">
+			<div class="row">
+				<!-- 사이드바 -->
+				<div class="col-md-3">
+					<h4>Sidebar</h4>
+					<ul class="list-group">
+						<li class="list-group-item"><a href="#">Link 1</a></li>
+						<li class="list-group-item"><a href="#">Link 2</a></li>
+						<li class="list-group-item"><a href="#">Link 3</a></li>
+						<li class="list-group-item"><a href="#">Link 4</a></li>
+					</ul>
+				</div>
+
+				<!-- 본문 영역 -->
+				<div class="col-md-9">
+					<h2>Main Content</h2>
+					<p>This is the main content area. You can add any information
+						here.</p>
+					<p>More content can go here. For example, articles, images, or
+						any other type of information you want to display.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
