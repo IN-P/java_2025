@@ -1,4 +1,4 @@
-package com.company.boot001.myjpa;
+package com.company.boot003.myjpa;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,25 +14,21 @@ import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
-public class Team {
-	@Id // 1. 기본키 primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // 2. 숫자자동증가 auto_increment
+public class Member {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	private int age;
+	@Column(nullable = false)
 	private String name;
 	
-	@Column(updatable = false) //수정못하게
+	@Column(updatable = false)
 	private LocalDateTime createDate = LocalDateTime.now();
 	
-	//@Transient //컬럼 인식 못하게
-	//private String email;
-	
-	// mappedBy 주인, 부모, 상위 상위가 존재하면면 하위가 참조할 수 있게
-	@OneToMany(mappedBy = "team", cascade = CascadeType.REMOVE)
-	List<Member> member = new ArrayList<>();
-	
+	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+	List<Board> board = new ArrayList<>();
 }

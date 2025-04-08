@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+<meta charset="UTF-8">
+<title>SPRINGBOOT BOARD - 홈</title>
+</head>
+<body>
+
+	<!-- content 부분에 본문 콘텐츠 추가 -->
+	<div layout:fragment="content">
+		<h1>환영합니다! SPRINGBOOT BOARD</h1>
+		<p>이곳은 게시판의 첫 페이지입니다.</p>
+
+		<!-- 게시글 목록 예시 -->
+		<ul class="list-group">
+			<li class="list-group-item"><a href="#">게시글 1</a></li>
+			<li class="list-group-item"><a href="#">게시글 2</a></li>
+			<li class="list-group-item"><a href="#">게시글 3</a></li>
+		</ul>
+	</div>
+
+</body>
+</html>
