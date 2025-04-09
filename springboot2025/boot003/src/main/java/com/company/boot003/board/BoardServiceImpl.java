@@ -9,19 +9,21 @@ import org.springframework.stereotype.Service;
 
 import com.company.boot003.myjpa.Board;
 import com.company.boot003.myjpa.BoardRepository;
+import com.company.boot003.myjpa.Member;
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class BoardServiceImpl /*implements BoardService*/ {
 
 	@Autowired BoardRepository br;
 	
-	@Override
+	/*@Override*/
 	public List<Board> findAll() {
-		return br.findAll();
+		//return br.findAll();
+		return br.findAllByOrderByDesc();
 	}
 	
 	@Transactional // commit(반영) / rollback(되돌리기)
-	@Override
+	/*@Override*/
 	public Board find(Long id) {
 		Board bd = br.findById(id).get();
 		bd.setBhit(bd.getBhit()+1); // 조회수 +1
@@ -29,25 +31,29 @@ public class BoardServiceImpl implements BoardService {
 		return bd;
 	}
 
-	@Override
-	public void insert(Board bd) {
+	/*@Override*/
+	public void insert(Board bd, Long member_id) {
+		Member mb = new Member();
+		mb.setId(member_id);
+		bd.setMember(mb);
 		bd.setBip();
 		br.save(bd);
 	}
 
-	@Override
+	/*@Override*/
 	public Board update_get(Long id) {
 		return br.findById(id).get();
 	}
 
-	@Override
-	public void update_post(Board bd) {
-		br.save(bd);
+	/*@Override*/
+	public int update_post(Board bd) {
+		return br.updateByIdAndBpass(bd.getId(),bd.getBpass(),bd.getBtitle(), bd.getBcontent());
 	}
 
-	@Override
-	public void delete_get(Board bd) {
-		br.delete(bd);
+	/*@Override*/
+	public int delete(Board bd) {
+		//br.delete(bd);
+		return br.deleteByIdAndBpass(bd.getId(), bd.getBpass()); 
 	}
 
 }

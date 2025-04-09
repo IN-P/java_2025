@@ -149,3 +149,89 @@ Q8.   class Team 엔티티와  class Member 엔티티에 외래키를 설정하�
   Member 클래스에서 설정할 부분은?   @ManyToOne
   
 Q9. springboot에서 jsp 대신에 사용하는 템플릿은? (   html ->  thymeleaf ) 
+
+#1. 반복 : <div th:each="dto, state : $(list)"> ${dto.id}</div>
+#2. 동적문자열: <h3 th:text="${dto.name}"></h3>
+#3. 링크         : <a th:href="@{/board/list></a>
+         <a th:href="@{|/board/detail/${dto.id}|}}"></a>
+         <form th:action="@{/board/insert}">
+→ 
+
+Q1.  springboot  thymeleaf를 이용하여  서버로부터 list를 넘겨받아 게시판의 반복문을 작성하려고 한다.  
+
+<tr th:each="dto,state:${list}">
+   <td><a  th:href="@{|/board/detail/${dto.id}|}" th:text="${dto.btitle}></a></td>  
+   <!-- 1-1. 제목 btitle -->
+   <!-- 1-2.  /board/detail 경로의 해당 id로 이동  -->
+   <td  th:text="${dto.member.name}"></td>  
+   <!-- 1-3. 작성자 member객체안의 name   -->
+</tr> 
+
+   
+Q2.  thymeleaf 에서 a태그에  /board/list경로로 링크를 걸려고 한다.  
+<a   th:href="@{/board/list}"   class="btn btn-outline-primary btn-block">목록보기</a>
+
+
+Q3.  form 태그에서  /board/delete로  action을 설정하려고 한다. 들어갈 코드는?
+<form  th:action="@{/board/delete}"  method="post" id="writeForm"
+   onsubmit="return  form()">
+   <div class="my-3">
+      <label for="bpass" class="form-label">비밀번호</label> <input
+         type="text" name="bpass" id="bpass" class="form-control">
+   </div>
+   <div class="my-3  text-end">
+      <input type="submit" value="입력" class="btn btn-primary btn-block">
+   </div>
+</form>
+
+#3.  글검색부분은  작성자 및 글제목으로도 가능하게 [도전!]
+※ 참고)
+select  distinct b  
+from Board b  left  join   Member m  on  b.member = m
+where    b.title       like  %:key%  
+       or  b.content  like  %:key%  
+       or  m.name    like  %:key%  
+
+
+■ Step6. security
+1. spring security?
+1) 애플리케이션의 보안(인증,인가) 담당
+2) filter의 흐름에 따라 처리
+
+2. 인증 vs 인가
+1) 인증 - 본인이 맞는지 확인        여권)-본인이 맞는지 인증
+2) 인가 - 인증된 사용자가 접근가능   조종석까지 가기(X)
+
+3.  spring security 아키텍쳐(1)
+1) 사용자가 로그인폼 로그인 시도 (username + password 전달)
+2) UsernamePasswordAuthentication 요청정보 - Authentication 생성
+3) Authentication 인증처리
+
+10) 인증완료 (사용자정보) SecurityContextHolder에 담기
+  - AuthenticationSuccessHandler 성공!
+  - AuthenticationFailureHandler 실패!
+
+3.  spring security 아키텍쳐(2)
+4) Authentication Manager 인증담당
+  - UsernamePasswordAuthentication Token은 provider를 찾는데 사용
+5) AuthenticationProvider - 로그인정보와 db정보를 비교
+6) UserDetailService - db에 있는 사용자 정보 가져오기
+
+
+[실습]
+1. spring project > pom.xml
+2. localhost:8080/login 로그인창 - 인증 (본인확인)
+3. SecurityConfig.java - 설정
+4. Member @Entity
+5. MemberRepository - crud(Dao)
+6. MemberService
+7. Controller
+8. View
+
+
+
+
+
+
+
+

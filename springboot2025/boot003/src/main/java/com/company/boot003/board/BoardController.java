@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.company.boot003.myjpa.Board;
 
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	//ver-1 @Autowired BoardService sv;
-	private final BoardService sv;
+	private final BoardServiceImpl sv;
 	
 	@GetMapping("/board/list")
 	public String list(Model model){
@@ -38,9 +39,12 @@ public class BoardController {
 	
 	@PostMapping("/board/insert")
 	public String insert_post(Board bd, @RequestParam Long member_id){
-		if(bd!=null) {sv.insert(bd);} //글쓰기 기능s
+		if(bd!=null) {sv.insert(bd,member_id);} //글쓰기 기능s
 		return "redirect:/board/list";
 	}// http://localhost:8080/board/list (글쓰기 기능 - 갱신된 리스트)__
+	
+	// @RequestParam 그냥넘길때
+	// @PathVariable url 주소표시창으로 넘길때
 	
 	@GetMapping("/board/update/{id}")
 	public String update_get(@PathVariable Long id, Model model){
@@ -49,20 +53,28 @@ public class BoardController {
 	}// http://localhost:8080/board/update (글수정 폼)
 	
 	@PostMapping("/board/update")
-	public String update_post(Board bd){
-		if(bd!=null) {sv.update_post(bd);} //글수정 기능
+	public String update_post(Board bd, RedirectAttributes rttr){
+		String msg = "fail";
+		if(sv.update_post(bd)>0) {msg="success";} //글삭제 기능
+	    rttr.addFlashAttribute("msg", msg);
 		return "redirect:/board/detail/"+bd.getId();
+		
+		//if(bd!=null) {sv.update_post(bd);} //글수정 기능
+		//return "redirect:/board/detail/"+bd.getId();
 	}// http://localhost:8080/board/detail (글수정 기능 - 갱신된 리스트)
 	
 	@GetMapping("/board/delete/{id}")
-	public String delete_get(@PathVariable Long id){
-		
+	public String delete_get(@PathVariable Long id, Model model){
+		model.addAttribute("id",id);
 		return "board/delete";
 	}// http://localhost:8080/board/delete (글삭제 폼)
 	
 	@PostMapping("/board/delete")
-	public String delete_post(Board bd){
-		if(bd!=null) {sv.delete_get(bd);} //글삭제 기능
+	public String delete_post(Board bd, RedirectAttributes rttr){
+		String msg = "fail";
+		if(sv.delete(bd)>0) {msg="success";} //글삭제 기능
+	    rttr.addFlashAttribute("msg", msg);
+		//sv.delete(bd);
 		return "redirect:/board/list";
 	}// http://localhost:8080/board/delete (글삭제 기능 - 갱신된 리스트)
 	

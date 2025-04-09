@@ -26,13 +26,14 @@
 					<!-- 1. th:each="한개,상태 : 리스트" -->
 					<!-- 2. th:test="동적으로 꺼내온 데이터" -->
 					<!-- 1. th:href="@{/board/insert}" -->
-					<tr th:each="dto,state : ${list}">
-						<td th:text="${state.index}+1"></td>
+					<tr th:each="dto,state : ${list}"> 
+						<td th:text="${list.size()-state.index}"></td>
 						<td><a th:href="@{|/board/detail/${dto.id}|}" th:text="${dto.btitle}"></a></td>
 						<td th:text="${dto.member.name}">ADMIN</td>
-						<td th:text="${dto.createDate}"></td>
+						<td th:text="${#temporals.format(dto.createDate,'yyyy-MM-dd HH:mm')}"></td>
 						<td th:text="${dto.bhit}"></td>
-
+					<!-- #temporals.format() 포멧형식 -->
+					<!-- #lists.reverse() 리스트 역순 -->
 					</tr>
 
 				</tbody>
