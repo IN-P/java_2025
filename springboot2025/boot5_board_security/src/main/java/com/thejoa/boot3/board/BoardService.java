@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thejoa.boot3.member.Member;
 import com.thejoa.boot3.member.MemberRepository;
 
 @Service 
