@@ -72,7 +72,7 @@ public class BoardService  {
 
 	public int update(MultipartFile file, Board board) {
 		//file Upload 기능구현
-		if(!file.isEmpty()) {
+		if(!file.isEmpty()) { //file이 있다면 
 			try {
 				board.setBfile(upload.fileUpload(file));
 			} catch (IOException e1) {
