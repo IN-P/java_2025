@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>게시글 상세보기</title>
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    
+    <!-- ✅ CSRF 메타태그 추가 -->
+	<meta name="_csrf" th:content="${_csrf != null ? _csrf.token : ''}" />
+	<meta name="_csrf_header" th:content="${_csrf != null ? _csrf.headerName : ''}" />
+    
+    <style>
+        .highlight {
+               background-color: #fff3cd !important;
+			   font-weight: bold; 
+			   transition: background-color 0.3s;
+        }
+        .reply {
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+<div class="container mt-5">
+    <h2 class="mb-4">📌 게시글 상세보기</h2>
+
+    <!-- ✅ 게시글 정보 -->
+    <form th:action="@{/admin/board/edit/{id}(id=${board.id})}" method="post">
+        <table class="table table-bordered">
+            <tr>
+                <th>제목</th>
+                <td th:text="${board.title}" ></td>
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td th:text="${board.user.nick_name}"></td>
+            </tr>
+            <!-- ✅ 작성자 IP -->
+		    <tr>
+		        <th>작성자 IP</th>
+		        <td th:text="${board.user != null and board.user.ip != null ? board.user.ip : '알 수 없음'}">작성자IP</td>
+		    </tr>
+		    <!-- ✅ 게시글 작성 IP -->
+		    <tr>
+		        <th>게시글 작성 IP</th>
+		        <td th:text="${board.ip != null ? board.ip : '알 수 없음'}">작성시 IP</td>
+		    </tr>
+            <tr>
+                <th>작성일</th>
+                <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td th:utext="${board.content}" th:id="${report != null and report.reportType.toString() == 'BOARD' ? 'highlight-target' : null}"></td>
+            </tr>
+            <tr th:if="${board.img != null}">
+                <th>첨부 이미지</th>
+                <td><img th:src="@{'/images/board/' + ${board.img}}" style="max-width: 300px;"></td>
+            </tr>
+
+        </table>
+    </form>
+    
+    <!-- ✅ 수정/목록 버튼 -->
+    <div class="mt-3">
+    	<!-- ✅ 게시판관리 경로 버튼 -->
+        <th:block th:if="${report == null}">
+		    <a th:href="@{'/admin/board/edit/' + ${board.id}}" class="btn btn-warning">수정</a>
+		    <a th:href="@{/admin/board/list}" class="btn btn-secondary">목록</a>
+		</th:block>
+
+		<!-- ✅ 신고관리 경로 버튼 -->
+		<th:block th:if="${report != null and !report.processed}">
+		    <div class="d-flex justify-content-between mt-3">
+		        <!-- ✅ 돌아가기 버튼 (왼쪽 정렬) -->
+		        <a th:href="@{/admin/notifications}" class="btn btn-outline-secondary">← 돌아가기</a>
+		
+		        <!-- ✅ 유지/삭제 버튼 묶음 (오른쪽 정렬) -->
+		        <div>
+		            <button type="button" id="approveReportBtn" class="btn btn-outline-success ms-2">✅ 유지하기</button>
+		            <button type="button" id="deleteContentBtn" class="btn btn-outline-danger ms-2">❌ 내용 삭제</button>
+		        </div>
+		    </div>
+		</th:block>
+    </div>
+	<input type="hidden" id="reportId" th:value="${report != null ? report.id : 0}" />
+	
+	<!-- ✅ 댓글 리스트 -->
+	<div class="mt-5">
+	    <h5>댓글</h5>
+	    <ul class="list-unstyled mt-3">
+	        <th:block th:each="comment : ${board.comments}" th:if="${comment.parent == null}">
+	            <li th:insert="~{this :: commentFragment(${comment}, 0)}"></li>
+	        </th:block>
+	    </ul>
+	</div>
+
+</div>
+</th:block>
+
+<!-- ✅ 댓글 재귀 -->
+<th:block th:fragment="commentFragment(comment, depth)">
+    <th:block th:with="margin=${depth * 30}">
+        <div th:id="${comment.id == commentId ? 'highlight-target' : null}"
+             th:style="|margin-left: ${margin}px; padding: 10px 0; border-bottom: 1px solid #ddd;|"
+             class="d-flex justify-content-between">
+            <span>
+                <b th:text="${comment.user != null ? comment.user.nick_name : '익명'}"></b>
+                (IP: <span th:text="${comment.ip}"></span>) :
+                <span th:text="${comment.content}"></span>
+            </span>
+            <form th:if="${report == null}"
+                  th:action="@{/admin/board/comment/delete/{id}(id=${comment.id})}"
+                  method="post">
+                <input type="hidden" name="boardId" th:value="${comment.board.id}">
+                <button type="submit" class="btn btn-sm btn-outline-danger">삭제</button>
+            </form>
+        </div>
+		<!-- ✅ 자식 댓글 재귀-->
+        <th:block th:each="child : ${comment.children}">
+            <li th:insert="~{this :: commentFragment(${child}, ${depth + 1})}"></li>
+        </th:block>
+    </th:block>
+</th:block>
+
+
+<!-- ✅ 스크립트: 강조 처리 -->
+<th:block layout:fragment="script">
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const highlightTarget = document.getElementById('highlight-target');
+        const reportIdInput = document.getElementById('reportId');
+
+        // ✅ 강조 표시
+        if (highlightTarget && reportIdInput) {
+            highlightTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+            highlightTarget.classList.add('highlight');
+        }
+
+        const reportId = reportIdInput?.value;
+        const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        const approveBtn = document.getElementById('approveReportBtn');
+        const deleteContentBtn = document.getElementById('deleteContentBtn');
+
+        // ✅ 유지하기 버튼
+        if (approveBtn && reportId) {
+            approveBtn.addEventListener('click', () => {
+                if (confirm('정말 이 신고를 처리 완료하시겠습니까?')) {
+                    fetch(`/admin/board/report/approve/${reportId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            [csrfHeader]: csrfToken
+                        }
+                    })
+                    .then(res => {
+                        if (res.ok) {
+                            alert('신고가 처리되었습니다.');
+                            approveBtn.remove();
+                            deleteContentBtn.remove();
+                            window.location.href = '/admin/notifications';
+                        } else {
+                            alert('처리 실패');
+                        }
+                    });
+                }
+            });
+        }
+
+        // ✅ 내용삭제 버튼
+        if (deleteContentBtn && reportId) {
+            deleteContentBtn.addEventListener('click', () => {
+                if (confirm('정말 이 글의 내용을 삭제 처리하시겠습니까?')) {
+                    fetch(`/admin/board/report/delete-content/${reportId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            [csrfHeader]: csrfToken
+                        }
+                    })
+                    .then(res => {
+                        if (res.ok) {
+                            alert('내용이 삭제 처리되었습니다.');
+                            approveBtn.remove();
+                            deleteContentBtn.remove();
+                            window.location.reload();
+                            window.location.href = '/admin/notifications';
+                        } else {
+                            alert('삭제 실패');
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>마이페이지</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+.mypage-container {
+	padding: 40px;
+	border-radius: 16px;
+	background-color: #fff;
+	box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+}
+
+.profile-img {
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #dee2e6;
+	margin-bottom: 15px;
+}
+
+.mypage-container h2 {
+	font-weight: 800;
+	margin-bottom: 30px;
+}
+
+.mypage-container p {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.mypage-container p strong {
+	display: inline-block;
+	width: 100px;
+	color: #444;
+}
+
+.button-group {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+.button-group .btn {
+	min-width: 130px;
+	padding: 10px 16px;
+	font-size: 15px;
+	border-radius: 8px;
+}
+
+.slide-box {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.4s ease;
+}
+
+.slide-box.active {
+	max-height: 100px;
+}
+
+.withdraw-box {
+	margin-top: 32px;
+}
+
+.btn-outline-success {
+	padding: 2px 10px;
+	font-size: 13px;
+	margin-left: 8px;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+	border: none;
+}
+
+.btn-danger:hover {
+	background-color: #bb2d3b;
+}
+
+.animate-pop {
+	transition: transform 0.2s ease;
+}
+
+.animate-pop:hover {
+	transform: scale(1.08);
+}
+
+@media ( max-width : 576px) {
+	.button-group .btn {
+		min-width: 100%;
+	}
+}
+
+/* ✅ 뱃지 스타일 */
+.badge-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-bottom: 25px;
+	justify-content: center;
+}
+
+.pretty-badge {
+	display: inline-flex;
+	align-items: center;
+	background-color: #e3f2fd;
+	color: #0d6efd;
+	padding: 6px 12px;
+	font-size: 14px;
+	border-radius: 999px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	transition: transform 0.2s ease;
+}
+
+.pretty-badge:hover {
+	transform: scale(1.08);
+}
+
+.pretty-badge i {
+	margin-right: 6px;
+	font-size: 16px;
+}
+</style>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container mt-5" style="max-width: 720px;">
+			<div class="mypage-container text-center">
+
+				<!--  뱃지 UI (아이콘 오류 없는 버전) -->
+				<div class="badge-container">
+					<!--  badge 아이콘 아이디별로 if 처리 -->
+					<span th:each="badge : ${badges}" class="pretty-badge"> <i
+						class="bi bi-chat-dots-fill" th:if="${badge} == '카카오 로그인'"></i> <i
+						class="bi bi-google" th:if="${badge} == '구글 로그인'"></i> <i
+						class="bi bi-envelope-paper" th:if="${badge} == '네이버 로그인'"></i> <i
+						class="bi bi-envelope-check-fill" th:if="${badge} == '이메일 인증'"></i>
+						<i class="bi bi-phone-fill" th:if="${badge} == '전화번호 인증'"></i> <i
+						class="bi bi-award"
+						th:if="${badge} != '카카오 로그인'
+                                  and ${badge} != '구글 로그인'
+                                  and ${badge} != '네이버 로그인'
+                                  and ${badge} != '이메일 인증'
+                                  and ${badge} != '전화번호 인증'"></i>
+						<span th:text="${badge}"></span>
+					</span>
+
+				</div>
+
+				<!-- 프로필 사진 -->
+<img th:if="${user.profile_img != null}"
+     th:src="@{/images/userimage/{file}(file=${user.profile_img})}"
+     class="profile-img" alt="프사" />
+
+<img th:if="${user.profile_img == null}"
+     th:src="@{/images/userimage/default-profile.png}"
+     class="profile-img" alt="프사" />
+
+
+
+				<h2>마이페이지</h2>
+<div th:unless="${user.verified}" class="alert alert-warning text-start mt-3" style="font-size: 15px;">
+    <strong>⚠ 아직 인증되지 않았습니다.</strong><br>
+    아래 중 하나 이상을 완료하면 글쓰기 및 댓글 기능을 이용할 수 있습니다:
+    <ul class="mt-2 mb-0">
+        <li>이메일 인증</li>
+        <li>카카오 / 네이버 / 구글 간편 로그인</li>
+        <li>전화번호 인증</li>
+    </ul>
+</div>
+
+				<div class="text-start px-3">
+					<!-- 이메일 + 인증 상태 -->
+					<p>
+						<strong>이메일:</strong> <span th:text="${user.email}"></span> <span
+							th:if="${user.email_chk}" class="badge bg-success">인증 완료</span>
+						<button type="button" class="btn btn-outline-success"
+							onclick="openEmailPopup()">이메일 인증</button>
+					</p>
+
+					<p>
+						<strong>닉네임:</strong> <span th:text="${user.nick_name}"></span>
+					</p>
+					<p>
+						<strong>권한:</strong> <span th:text="${roleName}"></span>
+					</p>
+
+					<p th:if="${user.introduce != null and !user.introduce.isEmpty()}">
+						<strong>소개:</strong> <span th:text="${user.introduce}"></span>
+					</p>
+
+					<p th:if="${user.zipcode != null}">
+						<strong>우편번호:</strong> <span th:text="${user.zipcode}"></span>
+					</p>
+					<p th:if="${user.address != null}">
+						<strong>기본 주소:</strong> <span th:text="${user.address}"></span>
+					</p>
+					<p th:if="${user.addressDetail != null}">
+						<strong>상세 주소:</strong> <span th:text="${user.addressDetail}"></span>
+					</p>
+					<p th:if="${user.phone != null}">
+						<strong>전화번호:</strong> <span th:text="${user.phone}"></span>
+					</p>
+				</div>
+
+				<!-- 버튼 영역 -->
+				<div class="button-group">
+					<button class="btn btn-primary" onclick="toggleBox('editBox')">정보
+						수정</button>
+					<button class="btn btn-warning" onclick="toggleBox('pwBox')">비밀번호
+						변경</button>
+					<a th:href="@{/user/logout}" class="btn btn-outline-danger">로그아웃</a>
+					<a th:href="@{/main}" class="btn btn-outline-secondary">메인으로</a> <a
+						th:href="@{/admin/dashboard}" class="btn btn-outline-primary"
+						sec:authorize="hasAnyAuthority('ROLE_MASTER', 'ROLE_USER_MANAGER', 'ROLE_PLAYER_MANAGER', 'ROLE_BOARD_MANAGER', 'ROLE_GAME_MANAGER')">
+						관리자 페이지 </a>
+						 <a th:href="@{/mygame/player-memory}" class="btn btn-success">🧠 기억력 게임</a>
+				</div>
+
+				<!-- 슬라이드 버튼 -->
+				<div id="editBox" class="slide-box">
+					<a th:href="@{/user/mypage/edit}"
+						class="btn btn-outline-primary w-100 mt-2">➡️ 프로필 정보 수정</a>
+				</div>
+
+				<div id="pwBox" class="slide-box">
+					<a th:href="@{/user/password/change}"
+						class="btn btn-outline-warning w-100 mt-2">➡️ 비밀번호 변경</a>
+				</div>
+
+				<!-- 탈퇴 -->
+				<div class="withdraw-box text-center">
+					<form id="withdrawForm" th:action="@{/user/withdraw}" method="post">
+						<button type="button" class="btn btn-danger px-4 animate-pop"
+							onclick="confirmAndSubmit()">회원 탈퇴</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script>
+    function confirmAndSubmit() {
+        if (confirm("정말 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
+            document.getElementById("withdrawForm").submit();
+        }
+    }
+
+    function openEmailPopup() {
+        const width = 500;
+        const height = 400;
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
+        window.open('/user/email/verify', 'emailPopup', `width=${width},height=${height},top=${top},left=${left}`);
+    }
+
+    function toggleBox(id) {
+        const box = document.getElementById(id);
+        const allBoxes = document.querySelectorAll(".slide-box");
+        allBoxes.forEach(b => {
+            if (b !== box) b.classList.remove("active");
+        });
+        box.classList.toggle("active");
+    }
+</script>
+	</th:block>
+</body>
+</html>

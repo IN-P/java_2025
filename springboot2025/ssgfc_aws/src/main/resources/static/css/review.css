@@ -1,0 +1,138 @@
+/* 달력 */
+#miniCalendar {
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    max-width: 320px;
+}
+
+#miniCalendar .fc .fc-daygrid-day-number {
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+#miniCalendar .fc-day-today {
+    background-color: #e6f0ff !important;
+    border-radius: 4px;
+}
+
+.review-calendar .fc-toolbar-title {
+    font-size: 18px !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+#miniCalendar .fc .fc-col-header-cell-cushion {
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    display: block;
+}
+
+#miniCalendar .fc-day-sun .fc-col-header-cell-cushion,
+#miniCalendar .fc-day-sun .fc-daygrid-day-number {
+    color: #e74c3c !important;
+}
+
+#miniCalendar .fc-day-sat .fc-col-header-cell-cushion,
+#miniCalendar .fc-day-sat .fc-daygrid-day-number {
+    color: #2980b9 !important;
+}
+
+#miniCalendar .fc-col-header-cell:not(.fc-day-sat):not(.fc-day-sun) .fc-col-header-cell-cushion {
+    color: #222 !important;
+}
+
+.review-calendar .fc-daygrid-day {
+    border: none !important;
+}
+
+.review-calendar .fc-daygrid-day:hover {
+    background-color: #f2f2f2 !important;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.15s ease-in-out;
+}
+
+/* 전체 레이아웃 */
+.review-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-box {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.summary-bottom-box {
+    width: 100%;
+}
+
+.calendar-box-review {
+    width: 320px;
+    min-width: 280px;
+}
+
+.summary-box {
+    flex-grow: 1;
+    min-width: 300px;
+}
+
+.record-box {
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.record-box p {
+    white-space: pre-line;
+    word-break: keep-all;
+}
+
+.record-box h5 {
+    margin-bottom: 10px;
+}
+
+#recordList li {
+    white-space: normal !important;
+    line-height: 1.6;
+    word-break: break-word;
+    margin-bottom: 8px;
+}
+
+#recordList div {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    white-space: normal !important;
+}
+
+#recordList br {
+    display: inline-block;
+    margin-top: 4px;
+    content: "";
+}
+
+#recordList strong {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.indent {
+    display: block;
+    margin-left: 2em;
+}

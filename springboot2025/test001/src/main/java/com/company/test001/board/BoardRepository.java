@@ -21,7 +21,8 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	//id와 bpass가 같은면 수정
 	@Modifying 
 	@Query("update Board b set b.btitle=:btitle, b.bcontent=:bcontent where b.id=:id and b.bpass=:bpass")
-	int updateByIdAndBpass(@Param("id") Long id, @Param("bpass") String bpass, @Param("btitle") String btitle, @Param("bcontent") String bcontent);
+	int updateByIdAndBpass(@Param("id") Long id, @Param("bpass") String bpass,
+			@Param("btitle") String btitle, @Param("bcontent") String bcontent);
 	
 	
 }

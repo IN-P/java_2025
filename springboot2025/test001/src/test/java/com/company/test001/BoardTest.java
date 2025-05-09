@@ -50,12 +50,12 @@ class BoardTest {
 	@Test
 	@Transactional
 	public void updateByIdAndBpass() {
-		br.updateByIdAndBpass(3L, "3", "33", "33");
+		br.updateByIdAndBpass(3L, "3", "333", "333");
 		System.out.println(br.findById(3L));
 	}
 	
 	//id와 bpass 같으면 삭제
-	@Disabled
+	//@Disabled
 	@Test
 	@Transactional @Rollback(false)
 	public void deleteByIdAndBpass() {
