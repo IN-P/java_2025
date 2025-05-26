@@ -5,19 +5,21 @@ import {
   SIGN_UP_REQUEST,SIGN_UP_SUCCESS,SIGN_UP_FAILURE,
   CHANGE_NICKNAME_REQUEST,CHANGE_NICKNAME_SUCCESS,CHANGE_NICKNAME_FAILURE,
 } from '../reducers/user';
+import axios from 'axios';
 
 /////step3)
 function loginApi(data){
-  return axios.POST('/user/login',data);
+  return axios.post('/user/login',data);
 }
 function* login(action){
-  //const result = yield call(loginApi,action.data); //처리함수, 처리파라미터
   try {
+    const result = yield call(loginApi,action.data); //처리함수, 처리파라미터
     yield delay(1000);
     yield put({
       type:LOG_IN_SUCCESS,
-      data:action.data //result.data
+      data:result.data, 
     })
+    console.log('.......login success');
   } catch (error) {
     yield put({
       type:LOG_IN_FAILURE,
@@ -26,16 +28,15 @@ function* login(action){
   }
 }
 
-function logoutApi(data){
-  return axios.POST('/user/logout',data);
+function logoutApi(){
+  return axios.post('/user/logout');
 }
-function* logout(action){
-  //const result = yield call(logoutApi); //처리함수, 처리파라미터
+function* logout(){
   try {
+    const result = yield call(logoutApi); //처리함수, 처리파라미터
     yield delay(1000);
     yield put({
       type:LOG_OUT_SUCCESS,
-      data:action.data //result.data
     })
   } catch (error) {
     yield put({
@@ -46,15 +47,14 @@ function* logout(action){
 }
 
 function signupApi(data){
-  return axios.POST('/user/',data);
+  return axios.post('/user',data);
 }
 function* signup(action){
-  //const result = yield call(signupApi); //처리함수, 처리파라미터
   try {
-    yield delay(1000);
+    const result = yield call(signupApi,action.data); //처리함수, 처리파라미터
+    console.log(result);
     yield put({
       type:SIGN_UP_SUCCESS,
-      data:action.data //result.data
     })
   } catch (error) {
     yield put({
@@ -65,7 +65,7 @@ function* signup(action){
 }
 
 function changenicknameApi(data){
-  return axios.POST('/user/nickname',{nickname:data});
+  return axios.post('/user/nickname',{nickname:data});
 }
 function* changenickname(action){
   //const result = yield call(changenicknameApi); //처리함수, 처리파라미터

@@ -1,9 +1,10 @@
-import React,{useState,useCallback} from 'react';
+import React,{useState,useCallback, useEffect} from 'react';
 import {Input,Row,Col,Button,Form} from 'antd';
 import Link from 'next/Link';
 import userInput from '../hooks/userInput';
-import { loginAction } from '../reducers/user'; //#1. redux
+import { LOG_IN_REQUEST } from '../reducers/user'; //#1. redux
 import { useDispatch,useSelector } from 'react-redux'; //#2. redux - useDispatch
+
 
 //const LoginForm = ({setIsLogin})=>{
 const LoginForm = ()=>{ //#3. redux
@@ -20,25 +21,30 @@ const LoginForm = ()=>{ //#3. redux
   //   console.log(count);
   // };
 
-  const {logInLoading} = useSelector(state=>state.user);
+  const {logInLoading,logInError} = useSelector(state=>state.user);
 
-  const [id,onChangeId] = userInput('');
+  const [email,onChangeEmail] = userInput('');
   const [password,onChangePassword] = userInput('');
 
   const dispatch = useDispatch(); //#4. redux
 
+  useEffect(()=>{if(logInError){alert(logInError);}},[logInError]);
+
   const onSubmitForm = useCallback(()=>{ //컴포넌트가 처음 랜더링 될때 한번만 생성
-    console.log("........",id,password);
+    console.log("........",email,password);
     //setIsLogin(true);
-    dispatch(loginAction({id,password})); //#5. redux
-  },[id,password]); // id,password 값이 변경될때
+    dispatch({
+      type:LOG_IN_REQUEST,
+      data:{email,password}
+    }); //#5. redux
+  },[email,password]); // id,password 값이 변경될때
 
   /////////////////////////////////////////////view
   return (
   <>
     <Form layout="vertical" style={{padding:'3%'}} onFinish={onSubmitForm}>
-       <Form.Item label="아이디">
-        <Input placeholder="user@gmail.com 형식으로 입력"  name="id" value={id} onChange={onChangeId} required/>
+       <Form.Item label="email">
+        <Input placeholder="user@gmail.com 형식으로 입력"  name="email" value={email} onChange={onChangeEmail} required/>
       </Form.Item>
 
       <Form.Item label="비밀번호">

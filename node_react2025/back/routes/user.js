@@ -96,18 +96,34 @@ router.get('/',async(req,res,next)=>{
 
 });
 
-//4.로그아웃
-// POST : localhost:3065/user/logout 로그아웃기능입니다 출력
-router.post('/logout',isLoggedIn,(req,res,next)=>{
-  //res.send('로그아웃');
-  req.logOut(function(err){
-    if(err){return next(err);}
-    res.redirect('/'); //로그아웃 후 리다이렉션
-  });
-  req.session.destroy(); //현재 세션 삭제
-  res.send('로그아웃성공!'); //로가아웃이 되면 문자열 반환
-});
+// //4.로그아웃
+// // POST : localhost:3065/user/logout 로그아웃기능입니다 출력
+// router.post('/logout',isLoggedIn,(req,res,next)=>{
+//   //res.send('로그아웃');
+//   req.logOut(function(err){
+//     if(err){return next(err);}
+//     res.redirect('/'); //로그아웃 후 리다이렉션
+//   });
+//   //req.session.destroy(); //현재 세션 삭제
+//   //res.send('로그아웃성공!'); //로가아웃이 되면 문자열 반환
+// });
 
+//4. 로그아웃
+// POST : localhost:3065/user/logout    로그아웃기능입니다 출력
+router.post('/logout', isLoggedIn, (req, res, next) => {  // 사용자가 로그인상태면  로그아웃이 실행되도록
+
+  req.logout(function (err) {
+    if (err) {  return next(err);   }
+
+    req.session.destroy((err) => {   ///  
+      if (err) {
+        return next(err);
+      }
+      res.send('ok'); // 로그아웃 성공 응답
+    });
+  });
+
+});
 
 //5.닉네임변경
 // POST : localhost:3065/user/nicname 닉네임변경출력

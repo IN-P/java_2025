@@ -1,9 +1,10 @@
-import React,{useState,useCallback} from 'react';
+import React,{useState,useCallback,useEffect} from 'react';
 import AppLayout from '../components/AppLayout';
 import Head from 'next/head'
 import { Button, Checkbox, Form, Input } from 'antd';
 import userInput from '../hooks/userInput';
 import styled from 'styled-components';
+import Router from 'next/router';
 
 //1. SIGN_UP_REQUEST
 import { SIGN_UP_REQUEST } from '../reducers/user';
@@ -14,11 +15,31 @@ const ErrorMessage = styled.div`color:red;`; //style.div(color:red;)
 
 const Signup = ()=>{
   //3. selector 이용 - signUPLoading 가져오기
-  const {signUpLoading} = useSelector(state=>state.user);
+  const {signUpLoading,signUpDone,signUpError,user} = useSelector(state=>state.user);
   //4. dispatch 선언
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if (user&&user.id) {
+      Router.replace('/');
+    }
+  },[user&&user.id]);
+
+  useEffect(()=>{
+    if (signUpDone) {
+      Router.replace('/');
+    }
+  },[signUpDone]);
+
+  useEffect(()=>{
+    if (signUpError) {
+      alert(signUpError);
+    }
+  },[signUpError]);
+
+
   /////////////////////////////////code
-  const [id,onChangeId] = userInput('');
+  const [email,onChangeEmail] = userInput('');
   const [nickname,onChangeNickname] = userInput('');
   const [password,onChangePassword] = userInput(''); //userInput 줄이기
   
@@ -29,7 +50,7 @@ const Signup = ()=>{
     setPasswordError(e.target.value!==password);
   },[password]);
 
-  const [check,setCheck] = useState('');
+  const [check,setCheck] = useState(false);
   const [checkError,setCheckError] = useState(false);
   const onChangeCheck = useCallback((e)=>{
     console.log(e.target.checked);
@@ -43,22 +64,22 @@ const Signup = ()=>{
 
     return dispatch({
       type:SIGN_UP_REQUEST,
-      data:{id,password,nickname}
+      data:{email,password,nickname}
     });
     //5. dispatch
-  },[id,password,passwordRe,check]);
+  },[email,password,passwordRe,check]);
   /////////////////////////////////view
   return (
     <>
       <Head>
-        <meta charset='utf-8'/>
+        <meta charSet='utf-8'/>
         <title>Signup | TheJoa</title>
       </Head>
       <AppLayout>
         <Form layout='vertical' style={{margin:'2%'}} onFinish={onSubmitForm}>
           <Form.Item>
-            <label htmlFor='id'>아이디</label>
-            <Input placeholder='이메일을 작성해주세요.' id='id' value={id} onChange={onChangeId} name='id' required/>
+            <label htmlFor='email'>아이디</label>
+            <Input placeholder='이메일을 작성해주세요.' id='email' value={email} onChange={onChangeEmail} name='email' required/>
           </Form.Item>
           <Form.Item>
             <label htmlFor='nickname'>닉네임</label>
