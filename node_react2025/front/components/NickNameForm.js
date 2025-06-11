@@ -12,7 +12,7 @@ const NickNameForm = ()=>{
   const onSubmit = useCallback(()=>{
     dispatch({
       type:CHANGE_NICKNAME_REQUEST,
-      data:{nickname},
+      data:nickname,
     });
   },[nickname]);
 

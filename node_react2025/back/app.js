@@ -16,6 +16,7 @@ const testRouter = require('./routes/test');   //## 추가1
 const user = require('./routes/user');
 const post = require('./routes/post');
 const posts = require('./routes/posts');
+const hashtag = require('./routes/hashtag');
 
 //2. 환경설정
 dotenv.config(); //환경설정 .env 로드
@@ -58,6 +59,7 @@ app.use('/test', testRouter);
 app.use('/user',user);
 app.use('/post', post);
 app.use('/posts', posts);
+app.use('/hashtag', hashtag);
 
 //6. 서버설정 및 실행
 app.listen(3065, () => { console.log('server....'); });

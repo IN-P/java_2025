@@ -7,6 +7,7 @@ const fs = require('fs'); //file system
 
 const {Post,User,Image,Comment,Hashtag}=require('../models');
 const { isLoggedIn } = require('./middlewares');
+const { where } = require('sequelize');
 
 
 /////폴더 존재여부확인
@@ -125,11 +126,40 @@ router.delete('/:postId',isLoggedIn,async(req,res,next)=>{
       }
     }); //삭제글 게시글 id와 게시글 작성자가 동일하면 삭제
     res.status(200).json({PostId:parseInt(req.params.postId,10)});
-  } catch(eeror){
+  } catch(error){
     console.error(error);
     next(error);
   }
 });
+
+router.patch('/:postId',isLoggedIn,async (req,res,next)=>{
+  const hashtags = req.body.content.match(/#[^\s#]+/g); 
+  try {
+    //글수정 update
+    await Post.update({
+      content:req.body.content,
+    },{
+      where:{
+        id:req.params.postId,
+        UserId:req.user.id,
+      }
+    });
+    // 해쉬태그 findOrCreate
+    const post = await Post.findOne({where:{id:req.params.postId}}); //게시글 찾아오기
+    if (hashtags) { //해쉬태그가 존재한다면
+      const result = await Promise.all(hashtags.map( //해쉬태그들 다시조립
+        (tag)=>Hashtag.findOrCreate({ //db찾거나 생성하거나
+          where:{name:tag.slice(1).toLowerCase()},
+        })
+      ));
+      await post.setHashtags(result.map((v)=>v[0]));
+    }
+    res.status(200).json({PostId:parseInt(req.params.postId,10),content:req.body.content});
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+})
 
 //4. 좋아요 추가
 //1) PATCH localhost:3065/post/1/Like
@@ -203,10 +233,61 @@ router.post('/:postId/comment',isLoggedIn, async(req, res, next)=>{
 });
 
 
-
-
-
-
-
 //7. 리트윗
+// POST : localhost:3065/post/게시글번호/retweet
+// POST : localhost:3065/post/:postId/retweet
+
+router.post('/:postId/retweet', isLoggedIn , async(req,res,next)=>{ 
+    try{
+        //1. 기존게시글 확인 - findOne
+        const post = await Post.findOne({
+            where : { id: req.params.postId },
+            include : [{model:Post, as : 'Retweet'}]
+        });
+        if(!post) {return res.status(403).send('게시글을 확인해주세요')}
+        
+        //2. 리트윗-조건확인 : 본인글인지 확인 || 리트윗 한 적 있는지 확인
+        if( req.user.id === post.UserId
+            || (post.Retweet && post.Retweet.UserId === req.user.id)
+        ) {return res.status(403).send('본인의 글은 리트윗 할 수 없습니다.')}
+
+        //3. 리트윗할 게시글 번호
+        const retweetTargetId = post.RetweetId || post.id
+
+        //4. 중복 리트윗 여부
+        const exPost = await Post.findOne({
+            where : {
+                UserId: req.user.id,
+                RetweetId: retweetTargetId,
+            }
+        })
+        if(exPost){return res.status(403).send('본인의 글은 리트윗 할 수 없습니다.')}
+
+        //5. 리트윗 생성 - create
+        const retweet = await Post.create({
+            UserId: req.user.id, RetweetId: retweetTargetId, content : 'retweet',
+        });
+
+        //6. 리트윗 상세조회
+        const retweetDetail = await Post.findOne({
+            where : {id:retweet.id},
+            include:[{model:Post, as: 'Retweet', include:[
+                {model:User, attributes: ['id','nickname']},
+                {model:Image},
+            ]},
+                {model:User, attributes: ['id','nickname']},
+                {model:Image},
+                {model:Comment, include: [{model:User, attributes: ['id','nickname']},]}, ]
+        });
+
+        //7. res 응답
+        res.status(201).json(retweetDetail);
+
+    }catch(error){
+        console.error(error)
+        next(error)
+    }
+ });
+
+
 module.exports = router;

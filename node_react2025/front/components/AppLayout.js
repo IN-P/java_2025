@@ -1,4 +1,4 @@
-import React, {useState,useMemo} from 'react'; //react 불러오기
+import React, {useState,useMemo,useCallback} from 'react'; //react 불러오기
 import PropTypes from 'prop-types'; //props 타입검사하는 역할
 import Link from 'next/Link';
 import {Menu,Input,Row,Col} from 'antd';
@@ -6,6 +6,9 @@ import UserProfile from './UserProfile';
 import LoginForm from './LoginForm';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux'; // redux1
+import userInput from '../hooks/userInput';
+import Router from 'next/router';
+
 
 const InputSearch = styled(Input.Search)`
   vertical-align:middle;
@@ -13,12 +16,16 @@ const InputSearch = styled(Input.Search)`
 
 const AppLayout = ({children})=>{
   /////////////////////////////////////////////code
-  
+  const [searchInput,onChangeSearchInput] = userInput('');
+  const onSearch = useCallback(()=>{
+    Router.push(`/hashtag/${searchInput}`);
+  },[searchInput]);
+
   const items = [
     {label:<Link href="/" >LOGO</Link>,key:'/'},
     {label:<Link href="/profile" >PROFILE</Link>,key:'/profile'},
     {label:<Link href="/signup" >SIGNUP</Link>,key:'/signup'},
-    {label:<InputSearch placeholder="input search text" enterButton/>,key:'/search'},
+    {label:<InputSearch placeholder="input search text" enterButton value={searchInput} onChange={onChangeSearchInput} onSearch={onSearch}/>,key:'/search'},
   ];
   
   /// 1. 변수 vs useState

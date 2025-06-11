@@ -1,5 +1,6 @@
 import React,{useCallback} from 'react';
 import {Card,Avatar,Button} from 'antd';
+import Link from 'next/Link';
 import styled from 'styled-components';
 //import { logoutAction } from '../reducers/user'; //#1.
 import { LOG_OUT_REQUEST } from '../reducers/user';
@@ -31,11 +32,11 @@ const UserProfile = ()=>{ //#3.
   ///////////////////////////view
   return (
   <Card actions={[
-    <div key="sns">게시글<br/>{user.Posts?user.Posts.length:0}</div>,
-    <div key="followings">팔로잉<br/>{user.Followings?user.Followings.length:0}</div>,
-    <div key="followers">팔로워<br/>{user.Followers?user.Followers.length:0}</div>,
+    <div key="sns"><Link href={`/user/${user.id}`}><span>게시글<br/>{user.Posts?user.Posts.length:0}</span></Link></div>,
+    <div key="followings"><Link href="/profile">팔로잉<br/>{user.Followings?user.Followings.length:0}</Link></div>,
+    <div key="followers"><Link href="/profile">팔로워<br/>{user.Followers?user.Followers.length:0}</Link></div>,
   ]}>
-    <Card.Meta avatar={<Avatar>{user.nickname[0]}</Avatar>} title={user.nickname}/>
+    <Card.Meta avatar={<Avatar>{user.nickname?user.nickname[0]:'N'}</Avatar>} title={user.nickname}/>
     <ButtonWrapper>
       <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
     </ButtonWrapper>

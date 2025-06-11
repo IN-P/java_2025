@@ -28,7 +28,6 @@ const Home = ()=>{
       //          내가 내린 길이  + 화면에 보이는 높이                  = 브라우저 길이-200px 아래정도로 오면은
       if (window.screenY+document.documentElement.clientHeight>document.documentElement.scrollHeight-200) {
         if (hasMorePosts&&!loadPostsLoading) {
-          const lastId = mainPosts[mainPosts.length-1]?.id; //맨마지막으로쓴 게시글
           dispatch({
             type: LOAD_POSTS_REQUEST,
             data: mainPosts[mainPosts.length-1]?.id,
@@ -46,8 +45,8 @@ const Home = ()=>{
   return(
     <AppLayout>
       {user&&<PostForm/>}
-      {mainPosts.map((post)=>{
-        return(<PostCard post={post} key={post.id}/>);
+      {mainPosts.map((c)=>{
+        return(<PostCard post={c} key={c.id}/>);
       })}
     </AppLayout>
   );

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import 'antd/dist/antd.css'; //공통 css
 import Head from 'next/head';
